@@ -62,6 +62,8 @@ wineApp.getEachWine = function(wines){
 // };
 
 
+
+
 //Document Ready!!
 $(function(){
 	wineApp.init();
