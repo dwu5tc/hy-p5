@@ -1,17 +1,19 @@
-.about-left,
-.about-right {
+.about-left, .about-right{
 	width: 50%;
 	float: left;
+	display: inline-block;
 }
 
-// .about-left {
-// 	&__map {
-// 		img {
-			
-// 		}
-// 	}
-// }
-
-.about-right {
-	background-color: red;
+.about-left__map{
+	
 }
+
+h2{
+	font: $headingFont;
+}
+
+p{
+	font: $bodyFont;
+}
+
+
