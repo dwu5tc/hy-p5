@@ -1,0 +1,49 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+section {
+	clear: both;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+ul {
+	list-style: none;
+	background-color: red;
+}
+
+button {
+	background-color: transparent;
+	border: 1px solid black;
+}
+
+.section-title {
+	// position: relative;
+	h2 {
+		display: block;
+		text-align: center;
+	}
+	background-color: darkcyan;
+}
+
+.keyline {
+	// position: absolute;
+	content: "";
+}
+
+.xcenter {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.xy-center {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
