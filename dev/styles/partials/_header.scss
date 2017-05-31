@@ -57,12 +57,14 @@ ul.nav-bar__right__links{
 	h1{
 		color: white;
 		font-size: 120px;
+		letter-spacing: 10px;
 		margin-bottom: 20px;
 		font-family: $headingFont;
 	}
 	button{
 		padding: 10px 15px;
 		border: 3px solid white;
+		letter-spacing: 2px;
 		border-radius: 10px;
 		color: white;
 		outline: rgba(255, 255, 255, 0.25);
