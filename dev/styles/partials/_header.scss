@@ -24,6 +24,13 @@ nav{
 		float: left;
 	}
 	.nav-bar__right{
-		float: right;sa
+		float: right;
+	}
+}
+
+.nav-bar_right_links li a{
+	margin-right: 15px;
+	&:last-of-type{
+		margin-right: 0;
 	}
 }
