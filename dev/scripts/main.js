@@ -56,6 +56,8 @@ wineApp.displayWineInfo= function(data){
 };
 
 
+
+
 //Document Ready!!
 $(function(){
 	wineApp.init();
