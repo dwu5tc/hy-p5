@@ -56,11 +56,22 @@ ul.nav-bar__right__links{
 	text-align: center;
 	h1{
 		color: white;
-		font-size: 90px;
+		font-size: 120px;
 		margin-bottom: 20px;
+		font-family: $headingFont;
 	}
 	button{
 		padding: 10px 15px;
-		text-align: center;
+		border: 3px solid white;
+		border-radius: 10px;
+		color: white;
+		outline: rgba(255, 255, 255, 0.25);
+		transition: all 1s;
+		&:hover{
+			background-color: $darkPlum;
+		}
+	}
+	.wines_smoothScroll{
+		margin-right: 20px;
 	}
 }
