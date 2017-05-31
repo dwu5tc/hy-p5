@@ -23,8 +23,10 @@ wineApp.getWine = function(){
 		data: {
 			access_key: wineApp.key,
 			per_page: 100,
+			page: 1,
 			where: wineApp.vqa,
-			where_not: wineApp.whereNot
+			where_not: wineApp.whereNot,
+			volume_in_milliliters: 750
 		}
 	}).then(function(data){
 		wineApp.getEachWine(data.result);
@@ -41,7 +43,8 @@ wineApp.getWine = function(){
 //This is to separate out each wine.
 wineApp.getEachWine = function(wines){
 	wines.forEach(function(wine){
-		console.log(wine.producer_name);
+		console.log(wine
+			);
 		// wineApp.displayWineInfo(wine);
 	})
 }
