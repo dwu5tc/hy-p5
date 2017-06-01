@@ -113,7 +113,9 @@ wineApp.filterResults = function() {
 
 //This is to separate out each wine.
 wineApp.getEachWine = function(wines){
-	wines.forEach(function(wine)
+	wines.forEach(function(wine){
+	});
+}
 
 
 // Display this info for each wine.
@@ -135,6 +137,20 @@ wineApp.displayWineInfo= function(data){
 		$('.wines-inventory').append(wineFile); 
 	});
 };
+
+//Smooth Scroll
+wineApp.smoothScroll = function(){
+	$('.wines_smoothScroll').on('click', function(){
+		$('html, body').animate({
+			scrollTop: $('.wines').offset().top},
+			1500);
+	});
+	$('.about_smoothScroll').on('click', function(){
+		$('html, body').animate({
+			scrollTop: $('.about').offset().top},
+			1500);
+	});
+}
 
 //Document Ready!!
 $(function(){
