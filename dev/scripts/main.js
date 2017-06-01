@@ -7,6 +7,7 @@ wineApp.init = function(){
 	wineApp.getAllWines(1);
 	wineApp.getPECList();
 	wineApp.wineList = wineApp.wineList.filter(wineApp.filterPEC);
+	wineApp.smoothScroll();
 }
 
 //Variables for the KEY!!!
@@ -112,9 +113,7 @@ wineApp.filterResults = function() {
 
 //This is to separate out each wine.
 wineApp.getEachWine = function(wines){
-	wines.forEach(function(wine){
-	});
-};
+	wines.forEach(function(wine)
 
 
 // Display this info for each wine.

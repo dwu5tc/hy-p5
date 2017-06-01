@@ -63,10 +63,13 @@ ul.nav-bar__right__links{
 		color: white;
 		font-size: 120px;
 		letter-spacing: 10px;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
 		font-family: $headingFont;
-	}p{
-		font-family: $bodyFont;
+	}
+	h2{
+		font-family: $headingFont;
+		font-size: 30px;
+		margin-bottom: 15px;
 		color: white;
 	}
 	button{
