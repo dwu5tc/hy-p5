@@ -52,7 +52,6 @@ wineApp.filterPEC = function(item) {
 	// console.log(item);
 	if (wineApp.wineryList.includes(item.producer_name)) {
 		console.log(item);
-		wineApp.displayWineInfo(item);
 		return true;
 	}
 	return false;
@@ -124,40 +123,42 @@ wineApp.displayWine = function(item) {
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
 						<figure class="wine-item__img">
-							<img src="${item.img_url}" alt="">
+							<img src="${item.image_url}" alt="">
+							<figcation class="wine-item__info">
+								<div class="p-info xy-center">
+									<p>${item.producer_name}</p>
+									<p>${item.description}</p>
+									<p>${item.package}</p>
+									<p>${item.style}</p>
+									<p>${item.id}</p>
+									<p>${item.sugar_content}</p>
+								</div>
+							</figcation>
 						</figure>
-						<figcation class="wine-item__info xy-center">
-							<p>${item.producer_name}</p>
-							<p>${item.description}</p>
-							<p>${item.package}</p>
-							<p>${item.style}</p>
-							<p>${item.id}</p>
-							<p>${item.sugar_content}</p>
-						</figcation>
-						<div> class="wine-item__name">
-							<h3>${item.name}</h3>
+						<div class="wine-item__name">
+							<h4>${item.name}</h4>
 						</div>
 					</div>`
 		$(".wines-inventory").append(temp);
 	}
 }
 
-wineApp.displayWineInfo= function(data){
-		var photo = data.image_url;
-		var type = data.secondary_category;
-		if (photo != undefined && type != undefined) {
-			var name = $('<p>').addClass('wineName').text(data.name);
-	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
-	 	var image = $('<img>').attr('src', data.image_url);
-	 	var description = $('<p>').addClass('wineDescription').text(data.description);
-	 	var packageInfo = $('<p>').addClass('winePackageNotes').text(data.package);
-	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
-	 	var id = $('<p>').addClass('wineId').text(data.id);
-	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
-	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
-		}
-		$('.wines-inventory').append(wineFile); 
-};
+// wineApp.displayWineInfo= function(data){
+// 		var photo = data.image_url;
+// 		var type = data.secondary_category;
+// 		if (photo != undefined && type != undefined) {
+// 			var name = $('<p>').addClass('wineName').text(data.name);
+// 	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
+// 	 	var image = $('<img>').attr('src', data.image_url);
+// 	 	var description = $('<p>').addClass('wineDescription').text(data.description);
+// 	 	var packageInfo = $('<p>').addClass('winePackageNotes').text(data.package);
+// 	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
+// 	 	var id = $('<p>').addClass('wineId').text(data.id);
+// 	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
+// 	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
+// 		}
+// 		$('.wines-inventory').append(wineFile); 
+// };
 
 //Smooth Scroll
 wineApp.smoothScroll = function(){
