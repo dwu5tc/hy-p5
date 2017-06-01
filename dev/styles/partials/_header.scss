@@ -23,7 +23,7 @@ ul{
 
 nav{
 	background-color: $darkPlum;
-	padding: 10px 15px;
+	padding: 10px 20px;
 	.nav-bar__left{
 		float: left;
 	}
@@ -33,7 +33,7 @@ nav{
 }
 
 ul.nav-bar__right__links{
-	margin: 30px 0;
+	margin-top: 25px;
 	background-color: rgba(0,0,0,0); //Delete after that has been done.
 }
 
@@ -41,6 +41,9 @@ ul.nav-bar__right__links{
 	position:relative;
 	top: 100%;
 	margin-right: 15px;
+	&:hover{
+		border-bottom: 2px solid white;
+	}
 	&:last-of-type{
 		margin-right: 0;
 	}
@@ -48,7 +51,6 @@ ul.nav-bar__right__links{
 		color: white;
 		font-family: $bodyFont;
 		letter-spacing: 1px;
-
 	}
 }
 

@@ -1,19 +1,33 @@
-.about-left, .about-right{
-	width: 50%;
-	float: left;
-	display: inline-block;
+
+section.about{
+	background-color: $ivory;
+	padding: 100px 0;
+	h2{
+		font-family: $headingFont;
+		margin-bottom: 25px;
+		font-size: 45px;
+		letter-spacing: 2px;
+		color: white;
+	}
 }
+
+.wrapper{
+	margin-top: 50px;
+}
+
 
 .about-left__map{
-	
+	max-width: 50%;
+	float: left;
+	img{
+		border-radius: 20px;
+		border: 5px solid white;
+	}
 }
 
-h2{
-	font: $headingFont;
-}
 
 p{
-	font: $bodyFont;
+	font-family: $bodyFont;
 }
 
 
