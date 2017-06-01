@@ -42,27 +42,38 @@
 	position: relative;
 	float: left;
 	width: 33.33%;
-	padding-top: 33.33%; // change this to fit whatever aspect ratio we want
+	// padding-top: 33.33%; // change this to fit whatever aspect ratio we want
 	overflow: hidden;
 	&__img {
-		position: absolute;
+		// position: absolute;
+		position: relative;
+		top: 0;
+		opacity: 1;
 	}
 	&__info {
 		position: absolute;
-		width: 80%;
-		background-color: orange;
-		color: white;
+		top: 0; right:0;
+		bottom:0; left:0;
+		background-color: rgba(109, 56, 78, 0.9);
 		opacity: 0;
-		p {
-			text-align: center;
-			font-size: 16;
-		}
+		transition: opacity 0.5s;
 	}
-	&:hover .wine-item__img{
-		opacity: 0.5;
+}
+
+.wine-item__info{
+	// display: none;
+	
+}
+
+.p-info {
+	position: absolute;
+	p {
+		color: white;
+		text-align: center;
+		font-size: 16;
 	}
-	&:hover .wine-item__info {
-		opacity: 1;
-		transition: all 0.5s ease-in-out;
-	}
+}
+
+.wine-item:hover .wine-item__info{
+	opacity: 1;
 }
