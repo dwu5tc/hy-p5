@@ -10,6 +10,27 @@
 	}
 }
 
+.wines button{
+	padding: 10px 15px;
+	border: 3px solid $darkPlum;
+	letter-spacing: 2px;
+	border-radius: 10px;
+	color: $darkPlum;
+	outline: rgba(255, 255, 255, 0.25);
+	transition: all 1s;
+	margin-right: 20px;
+	width: 100px;
+	&:hover{
+		background-color: $darkPlum;
+		color: white;
+	}
+}
+
+.wines button.filter--selected{
+	background-color: $darkPlum;
+	color: white;
+}
+
 
 .section-title{
 	h2{
