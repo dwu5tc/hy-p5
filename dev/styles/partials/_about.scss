@@ -3,7 +3,8 @@ section.about{
 	background-color: $ivory;
 	// padding: 100px 0;
 	padding: 3em;
-	border: 5px solid $darkPlum;
+	border-top: 5px solid $darkPlum;
+	border-bottom: 5px solid $darkPlum;
 	h2{
 		font-family: $headingFont;
 		margin-bottom: 25px;
