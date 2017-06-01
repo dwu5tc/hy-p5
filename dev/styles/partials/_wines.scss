@@ -1,3 +1,7 @@
+section.wines{
+	padding: 4em 0;	
+}
+
 .wrapper {
 	width: 80%;
 	margin: 0 auto;
@@ -24,6 +28,10 @@
 		background-color: $darkPlum;
 		color: white;
 	}
+}
+
+.filter-bar{
+	margin-bottom: 20px;
 }
 
 .wines button.filter--selected{
@@ -76,8 +84,10 @@
 	float: left;
 	width: 33.33%;
 	// padding-top: 33.33%; // change this to fit whatever aspect ratio we want
+
 	// overflow: hidden;
 	transition: all 0.3s;
+
 	&__img {
 		// position: absolute;
 		position: relative;
@@ -92,6 +102,11 @@
 		opacity: 0;
 		transition: opacity 0.5s;
 	}
+	&__name{
+		text-align: center;
+		margin: 1.1em;
+	}
+
 }
 
 .wine-item__info{
@@ -101,6 +116,7 @@
 
 .p-info {
 	position: absolute;
+	width: 100%;
 	p {
 		color: white;
 		text-align: center;

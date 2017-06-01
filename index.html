@@ -3,8 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 	CSS Dev File -->
 	<link rel="stylesheet" href="public/styles/style.css"/>
+<!-- 	Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display" rel="stylesheet">
+<!-- 	Leaflet JS CDN -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+  	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+  	crossorigin=""/>
 	<title>Wine it Up!</title>
 	<script src="https://use.fontawesome.com/7d84edbcfa.js"></script>
 </head>
@@ -19,7 +25,7 @@
 			<div class="nav-bar__right">
 				<ul class="nav-bar__right__links">
 					<li><a href="#">Home</a></li>
-					<li><a href="#" class="about_smoothScroll">About VQA</a></li>
+					<li><a href="#" class="about_smoothScroll">About PEC</a></li>
 					<li><a href="#" class="wines_smoothScroll">Wine Selection</a></li>
 					<li><a href="#">Your Collection</a></li>
 				</ul>
@@ -51,11 +57,11 @@
 
 						<p>Our winemakers are serious about wine, but the tasting experience in Prince Edward County is refreshingly unpretentious. Sip award-winning wines quietly looking out over acres of vineyards, or enjoy the hustle and bustle of a crowded patio.</p>
 
-						<p class="button-top-p">Prince Edward County has a long and rich agricultural history. Our winemakers are carrying on that tradition today with grapes being their crop. They’re one-part farmer, one-part mad scientist and one-part chef. They work tirelessly year round to manage their vineyards, harvest their grapes, and work their magic in the cellar to produce high-quality wines.</p>
+						<p>Prince Edward County has a long and rich agricultural history. Our winemakers are carrying on that tradition today with grapes being their crop. They’re one-part farmer, one-part mad scientist and one-part chef. They work tirelessly year round to manage their vineyards, harvest their grapes, and work their magic in the cellar to produce high-quality wines.</p>
 
-						<button>Go to Wines</button>
+						<button class="wines_smoothScroll">Go to Wines</button>
 
-						<p class="button-bottom-p">Being on the north shore of Lake Ontario, the lake effect moderates the temperature throughout the year and shields us from early fall frosts, allowing the fruit to hang on the vine a little longer, developing more concentrated flavours. However, we face a big challenge every winter when temperatures can dip below -24C — the point at which buds on the vines will die.</p>
+						<p>Being on the north shore of Lake Ontario, the lake effect moderates the temperature throughout the year and shields us from early fall frosts, allowing the fruit to hang on the vine a little longer, developing more concentrated flavours. However, we face a big challenge every winter when temperatures can dip below -24C — the point at which buds on the vines will die.</p>
 
 						<p>To protect them, we “hill up” the vines after harvesting the grapes in the fall and bury them under the soil, which provides enough insulation to keep them alive over the winter. In the spring, we undertake the mammoth task of de-hilling the vines — removing the soil and uncovering the vines. It’s a delicate task that must be done by hand to prevent damage.</p>
 
@@ -94,8 +100,6 @@
 						<div class="collection-feed-item__info">
 							<p></p>
 						</div>
-						<div class="collection-feed-item__map">
-						</div>
 					</div>
 					<div class="collection-feed-item">
 						<div class="collection-feed-item__img">
@@ -104,8 +108,6 @@
 						<div class="collection-feed-item__info">
 							<p></p>
 						</div>
-						<div class="collection-feed-item__map">
-						</div>
 					</div>
 					<div class="collection-feed-item">
 						<div class="collection-feed-item__img">
@@ -113,11 +115,14 @@
 						</div>
 						<div class="collection-feed-item__info">
 							<p></p>
-						</div>
-						<div class="collection-feed-item__map">
 						</div>
 					</div>
 				</div> <!-- collection feed -->
+		<!-- Map Container -->
+			 <section class="mapContainer">
+			 
+			 </section>
+		<!--  Map Container Close -->
 			</section> <!-- collection -->
 	</main>
 	<footer>
@@ -125,9 +130,16 @@
 			<p> &copy; 2017 Alex Clarke, Dean Wu, and Nahrin Jalal</p>
 		</div>
 	</footer>
+<!-- 	jQuery CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- 	JS Dev File -->
 	<script src="public/scripts/main.js"></script>
+<!-- 	TypeIt JS CDN -->
 	<script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/4.4.0/typeit.min.js"></script>
+<!-- 	Leaflet JS CDN -->
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+  	integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+  	crossorigin=""></script>
 </body>
 </html>

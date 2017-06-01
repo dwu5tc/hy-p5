@@ -145,22 +145,6 @@ wineApp.displayWine = function(item) {
 	}
 }
 
-// wineApp.displayWineInfo= function(data){
-// 		var photo = data.image_url;
-// 		var type = data.secondary_category;
-// 		if (photo != undefined && type != undefined) {
-// 			var name = $('<p>').addClass('wineName').text(data.name);
-// 	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
-// 	 	var image = $('<img>').attr('src', data.image_url);
-// 	 	var description = $('<p>').addClass('wineDescription').text(data.description);
-// 	 	var packageInfo = $('<p>').addClass('winePackageNotes').text(data.package);
-// 	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
-// 	 	var id = $('<p>').addClass('wineId').text(data.id);
-// 	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
-// 	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
-// 		}
-// 		$('.wines-inventory').append(wineFile); 
-// };
 
 //Smooth Scroll
 wineApp.smoothScroll = function(){
