@@ -120,7 +120,6 @@ wineApp.getEachWine = function(wines){
 
 // Display this info for each wine on the page.
 wineApp.displayWineInfo= function(data){
-	$.each(data, function(){
 		var photo = data.image_url;
 		var type = data.secondary_category;
 		if (photo != undefined && type != undefined) {
@@ -135,7 +134,6 @@ wineApp.displayWineInfo= function(data){
 	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
 		}
 		$('.wines-inventory').append(wineFile); 
-	});
 };
 
 //Smooth Scroll
