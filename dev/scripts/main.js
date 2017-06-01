@@ -155,8 +155,8 @@ $(function(){
 	wineApp.init();
 	$('.type-it').typeIt({
      strings: ["Wine it up!", "Wines of Prince Edward County"],
-     speed: 240,
-     breakLines: false,
+     speed: 210,
+     breakLines: true,
      autoStart: false
 });
 })
