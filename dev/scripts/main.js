@@ -7,6 +7,7 @@ wineApp.init = function(){
 	wineApp.getAllWines(1);
 	wineApp.getPECList();
 	wineApp.wineList = wineApp.wineList.filter(wineApp.filterPEC);
+	wineApp.smoothScroll();
 }
 
 //Variables for the KEY!!!
@@ -120,7 +121,18 @@ wineApp.getEachWine = function(wines){
 	})
 }
 
-
+wineApp.smoothScroll = function(){
+	$('.wines_smoothScroll').on('click', function(){
+		$('html, body').animate({
+			scrollTop: $('.wines').offset().top},
+			1500);
+	});
+	$('.about_smoothScroll').on('click', function(){
+		$('html, body').animate({
+			scrollTop: $('.about').offset().top},
+			1500);
+	});
+}
 
 
 
