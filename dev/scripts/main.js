@@ -119,6 +119,7 @@ wineApp.getEachWine = function(wines){
 
 
 // Display this info for each wine on the page.
+
 wineApp.displayWine = function(item) {
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
