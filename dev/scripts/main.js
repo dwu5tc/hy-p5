@@ -116,7 +116,7 @@ wineApp.getEachWine = function(wines){
 	wines.forEach(function(wine)
 
 
-// Display this info for each wine.
+// Display this info for each wine on the page.
 wineApp.displayWineInfo= function(data){
 	$.each(data, function(){
 		var photo = data.image_url;
