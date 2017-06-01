@@ -120,25 +120,6 @@ wineApp.getEachWine = function(wines){
 
 
 // Display this info for each wine on the page.
-// wineApp.displayWineInfo= function(data){
-// 	$.each(data, function(){
-// 		var photo = data.image_url;
-// 		var type = data.secondary_category;
-// 		if (photo != undefined && type != undefined) {
-// 			var name = $('<p>').addClass('wineName').text(data.name);
-// 	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
-// 	 	var image = $('<img>').attr('src', data.image_url);
-// 	 	var description = $('<p>').addClass('wineDescription').text(data.description);
-// 	 	var packageInfo = $('<p>').addClass('winePackageNotes').text(data.package);
-// 	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
-// 	 	var id = $('<p>').addClass('wineId').text(data.id);
-// 	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
-// 	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
-// 		}
-// 		$('.wines-inventory').append(wineFile); 
-// 	});
-// };
-
 wineApp.displayWine = function(item) {
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
@@ -161,6 +142,23 @@ wineApp.displayWine = function(item) {
 	}
 }
 
+wineApp.displayWineInfo= function(data){
+		var photo = data.image_url;
+		var type = data.secondary_category;
+		if (photo != undefined && type != undefined) {
+			var name = $('<p>').addClass('wineName').text(data.name);
+	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
+	 	var image = $('<img>').attr('src', data.image_url);
+	 	var description = $('<p>').addClass('wineDescription').text(data.description);
+	 	var packageInfo = $('<p>').addClass('winePackageNotes').text(data.package);
+	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
+	 	var id = $('<p>').addClass('wineId').text(data.id);
+	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
+	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
+		}
+		$('.wines-inventory').append(wineFile); 
+};
+
 //Smooth Scroll
 wineApp.smoothScroll = function(){
 	$('.wines_smoothScroll').on('click', function(){
@@ -180,8 +178,8 @@ $(function(){
 	wineApp.init();
 	$('.type-it').typeIt({
      strings: ["Wine it up!", "Wines of Prince Edward County"],
-     speed: 240,
-     breakLines: false,
+     speed: 210,
+     breakLines: true,
      autoStart: false
 });
 })
