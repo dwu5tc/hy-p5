@@ -4,49 +4,56 @@
 }
 
 .wines-filter {
-	border: 2px solid black;
+	position: relative;
 	h3 {
-		margin: 0 auto;
+		text-align: center;
 	}
 }
 
 .filter-bar {
-	
+	position: relative;
+	display: inline-block;
 	.filter {
-		// float: left;
+		margin-right: 15px;
+		&:last-child {
+			margin-right: 0px;
+		}
 		&--selected {
 
 		}
+
 	}
 }
 
 .wines-inventory {
 	width: 100%;
-	background-color: cyan;
 }
 
 .wine-item {
 	position: relative;
 	float: left;
 	width: 33.33%;
-	padding-top: 33.33%;
+	padding-top: 33.33%; // change this to fit whatever aspect ratio we want
 	overflow: hidden;
-
-	background-color: orange;
 	&__img {
 		position: absolute;
-		top: 0;
-		// left: 0;
 	}
 	&__info {
 		position: absolute;
-		top: 0; right: 0;
-		bottom: 0; left: 0;
+		width: 80%;
+		background-color: orange;
+		color: white;
+		opacity: 0;
 		p {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(50%, -50%);
+			text-align: center;
+			font-size: 16;
 		}
+	}
+	&:hover .wine-item__img{
+		opacity: 0.5;
+	}
+	&:hover .wine-item__info {
+		opacity: 1;
+		transition: all 0.5s ease-in-out;
 	}
 }
