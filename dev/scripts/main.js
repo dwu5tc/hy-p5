@@ -52,7 +52,8 @@ wineApp.getPECList = function() {
 wineApp.filterPEC = function(item) {
 	// console.log(item);
 	if (wineApp.wineryList.includes(item.producer_name)) {
-		// console.log(item);
+		console.log(item);
+		wineApp.displayWineInfo(item);
 		return true;
 	}
 	return false;
@@ -110,31 +111,9 @@ wineApp.filterResults = function() {
 //Using the vineyards we will compare them to the 
 
 
-
-
 //This is to separate out each wine.
 wineApp.getEachWine = function(wines){
-	wines.forEach(function(wine){
-		// console.log(wine
-		// 	);
-		// wineApp.displayWineInfo(wine);
-	})
-}
-
-wineApp.smoothScroll = function(){
-	$('.wines_smoothScroll').on('click', function(){
-		$('html, body').animate({
-			scrollTop: $('.wines').offset().top},
-			1500);
-	});
-	$('.about_smoothScroll').on('click', function(){
-		$('html, body').animate({
-			scrollTop: $('.about').offset().top},
-			1500);
-	});
-}
-
-
+	wines.forEach(function(wine)
 
 
 // Display this info for each wine.
@@ -146,12 +125,16 @@ wineApp.displayWineInfo= function(data){
 			var name = $('<p>').addClass('wineName').text(data.name);
 	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
 	 	var image = $('<img>').attr('src', data.image_url);
-	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer);
-	 	$('.deck').append(wineFile);
+	 	var description = $('<p>').addClass('wineDescription').text(data.description);
+	 	var packageInfo = $('<p>').addClass('winePackageNotes').text(data.package);
+	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
+	 	var id = $('<p>').addClass('wineId').text(data.id);
+	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
+	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
 		}
+		$('.wines-inventory').append(wineFile); 
 	});
 };
-
 
 //Document Ready!!
 $(function(){
