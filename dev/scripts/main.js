@@ -16,6 +16,7 @@ wineApp.vqa = 'is_vqa';
 wineApp.whereNot = 'is_dead,is_discontinued';
 wineApp.wineList = [];
 wineApp.wineryList = [];
+wineApp.currentFilters = [];
 
 //Here is the Ajax call to LCBO API!
 // wineApp.getWine = function(){
@@ -128,7 +129,6 @@ wineApp.displayWine = function(item) {
 							<figcation class="wine-item__info">
 								<div class="p-info xy-center">
 									<p>${item.producer_name}</p>
-									<p>${item.description}</p>
 									<p>${item.package}</p>
 									<p>${item.style}</p>
 									<p>${item.id}</p>
@@ -173,6 +173,36 @@ wineApp.smoothScroll = function(){
 			scrollTop: $('.about').offset().top},
 			1500);
 	});
+}
+
+wineApp.addFilterListener = function() {
+	$(".filter").on("click", function() {
+		wineApp.currentFilters = [];
+		$(this).toggleClass("filter--selected");
+		if ((this).hasClass("all")) {
+			$(".reds").removeClass("filter--selected");
+			$(".whites").removeClass("filter--selected");
+			$(".other").removeClass("filter--selected");
+			wineApp.currentFilters = ["Red Wine, White Wine, Sparkling Wine, Rosé Wine, Dessert Wine"];
+			wineApp.refreshInventory();
+		}
+	});
+	if ((".reds").hasClass("filter--selected")) { wineApp.currentFilters.push("Red Wine"); }
+	if ((".whites").hasClass("filter--selected")) { wineApp.currentFilters.push("White Wine"); }
+	if ((".other").hasClass("filter--selected")) { wineApp.currentFilters.push("Sparkling Wine", "Rosé Wine", "Dessert Wine"); }
+	wineApp.refreshInventory();
+}
+
+wineApp.updateInventory = function() {
+	var currentInventory = $(".wine-item");
+	for (var i = 0; i < currentInvetory.length; i++) {
+		if (wineApp.currentFilters.includes(currentInventory[i].data("type"))) {
+			currentInvetory[i].css("transform", "scale(0)");
+		}
+		else {
+			currentInvetory[i].css("transform", "scale(1)");
+		}
+	}
 }
 
 //Document Ready!!
