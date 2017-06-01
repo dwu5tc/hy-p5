@@ -10,6 +10,17 @@
 	}
 }
 
+.section-title{
+	h2{
+		font-family: $headingFont;
+		margin-bottom: 25px;
+		font-size: 45px;
+		letter-spacing: 2px;
+		color: $darkPlum;
+		text-transform: uppercase;
+	}
+}
+
 .filter-bar {
 	position: relative;
 	display: inline-block;
@@ -77,3 +88,22 @@
 .wine-item:hover .wine-item__info{
 	opacity: 1;
 }
+
+.wines-filter{
+	h3{
+		font-family: $headingFont;
+		margin-bottom: 15px;
+		font-size: 20px;
+		letter-spacing: 2px;
+		color: $darkPlum;
+		text-transform: uppercase;
+	}
+}
+
+.collection{
+	border-top: 5px solid $darkPlum;
+}
+
+
+
+
