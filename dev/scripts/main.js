@@ -6,6 +6,7 @@ wineApp.init = function(){
 	// console.log(wineApp.getWine(1));
 	wineApp.getPECList();
 	wineApp.smoothScroll();
+	wineApp.addFilterListener();
 }
 
 //Variables for the KEY!!!
@@ -179,29 +180,51 @@ wineApp.addFilterListener = function() {
 	$(".filter").on("click", function() {
 		wineApp.currentFilters = [];
 		$(this).toggleClass("filter--selected");
-		if ((this).hasClass("all")) {
-			$(".reds").removeClass("filter--selected");
-			$(".whites").removeClass("filter--selected");
-			$(".other").removeClass("filter--selected");
-			wineApp.currentFilters = ["Red Wine, White Wine, Sparkling Wine, Rosé Wine, Dessert Wine"];
-			wineApp.refreshInventory();
+
+		if ($(this).hasClass("all")) {
+			if ($(this).hasClass("filter--selected")) {
+				$(".reds").removeClass("filter--selected");
+				$(".whites").removeClass("filter--selected");
+				$(".other").removeClass("filter--selected");
+				wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
+				wineApp.refreshInventory();
+				return;
+			}
 		}
+		if ($(".reds").hasClass("filter--selected")) { 
+			wineApp.currentFilters.push("Red Wine"); 
+		}
+		if ($(".whites").hasClass("filter--selected")) { 
+			wineApp.currentFilters.push("White Wine"); 
+		}
+		if ($(".other").hasClass("filter--selected")) { 
+			wineApp.currentFilters.push("Sparkling Wine", "Rosé Wine", "Dessert Wine"); 
+		}
+		$(".all").removeClass("filter--selected");
+		wineApp.refreshInventory();
 	});
-	if ((".reds").hasClass("filter--selected")) { wineApp.currentFilters.push("Red Wine"); }
-	if ((".whites").hasClass("filter--selected")) { wineApp.currentFilters.push("White Wine"); }
-	if ((".other").hasClass("filter--selected")) { wineApp.currentFilters.push("Sparkling Wine", "Rosé Wine", "Dessert Wine"); }
-	wineApp.refreshInventory();
 }
 
-wineApp.updateInventory = function() {
+wineApp.refreshInventory = function() {
 	var currentInventory = $(".wine-item");
-	for (var i = 0; i < currentInvetory.length; i++) {
-		if (wineApp.currentFilters.includes(currentInventory[i].data("type"))) {
-			currentInvetory[i].css("transform", "scale(0)");
-		}
-		else {
-			currentInvetory[i].css("transform", "scale(1)");
-		}
+	console.log(currentInventory);
+	for (var i = 0; i < currentInventory.length; i++) {
+		(function(i) {
+			if (wineApp.currentFilters.includes(currentInventory[i].dataset.type)) {
+				$(currentInventory[i]).css("transform", "scale(1)");
+				setTimeout(function() {
+					console.log(currentInventory);
+					$(currentInventory[i]).css("display", "block");
+				}, 300);
+			}
+			else {
+				$(currentInventory[i]).css("transform", "scale(0)");
+				setTimeout(function() {
+					console.log(currentInventory);
+					$(currentInventory[i]).css("display", "none");
+				}, 300);
+			}
+		})(i);
 	}
 }
 

@@ -76,7 +76,8 @@
 	float: left;
 	width: 33.33%;
 	// padding-top: 33.33%; // change this to fit whatever aspect ratio we want
-	overflow: hidden;
+	// overflow: hidden;
+	transition: all 0.3s;
 	&__img {
 		// position: absolute;
 		position: relative;
