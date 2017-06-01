@@ -3,10 +3,8 @@ var wineApp = {};
 
 //wineApp init
 wineApp.init = function(){
-	console.log("hi");
 	// console.log(wineApp.getWine(1));
 	wineApp.getAllWines(1);
-	console.log("hi");
 	wineApp.getPECList();
 	wineApp.wineList = wineApp.wineList.filter(wineApp.filterPEC);
 }
@@ -51,9 +49,9 @@ wineApp.getPECList = function() {
 
 // if the producer name is in the list of wineries, return true
 wineApp.filterPEC = function(item) {
-	console.log(item);
+	// console.log(item);
 	if (wineApp.wineryList.includes(item.producer_name)) {
-		console.log(item);
+		// console.log(item);
 		return true;
 	}
 	return false;
@@ -116,33 +114,43 @@ wineApp.filterResults = function() {
 //This is to separate out each wine.
 wineApp.getEachWine = function(wines){
 	wines.forEach(function(wine){
-		console.log(wine
-			);
+		// console.log(wine
+		// 	);
 		// wineApp.displayWineInfo(wine);
 	})
 }
 
+
+
+
+
+
 // Display this info for each wine.
-// wineApp.displayWineInfo= function(data){
-// 	$.each(data, function(){
-// 		var photo = data.image_url;
-// 		var type = data.secondary_category;
-// 		if (photo != undefined && type != undefined) {
-// 			var name = $('<p>').addClass('wineName').text(data.name);
-// 	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
-// 	 	var image = $('<img>').attr('src', data.image_url);
-// 	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer);
-// 	 	$('.deck').append(wineFile);
-// 		}
-// 	});
-// };
-
-
+wineApp.displayWineInfo= function(data){
+	$.each(data, function(){
+		var photo = data.image_url;
+		var type = data.secondary_category;
+		if (photo != undefined && type != undefined) {
+			var name = $('<p>').addClass('wineName').text(data.name);
+	 	var producer = $('<p>').addClass('wineProducer').text(data.producer_name);
+	 	var image = $('<img>').attr('src', data.image_url);
+	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer);
+	 	$('.deck').append(wineFile);
+		}
+	});
+};
 
 
 //Document Ready!!
 $(function(){
 	wineApp.init();
+	$('.type-it').typeIt({
+     strings: ["Wine it up!", "Wines of Prince Edward County"],
+     speed: 240,
+     breakLines: false,
+     autoStart: false
+});
 })
+
 
 
