@@ -29,6 +29,15 @@
 	width: 100%;
 }
 
+.wine-inventory_append{
+	max-width: 30%;
+	float: left;
+	clear: both;
+	img{
+		max-width: 100%;
+	}
+}
+
 .wine-item {
 	position: relative;
 	float: left;

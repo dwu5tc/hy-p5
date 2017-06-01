@@ -131,9 +131,9 @@ wineApp.displayWineInfo= function(data){
 	 	var style = $('<p>').addClass('wineStyleNotes').text(data.style);
 	 	var id = $('<p>').addClass('wineId').text(data.id);
 	 	var sugarContent = $('<p>').addClass('sugarContent').text(data.sugar_content);
-	 	var wineFile = $('<li>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
+	 	var wineFile = $('<div>').addClass('wineFile').append(image, name, producer, packageInfo, description, style, sugarContent, id);
 		}
-		$('.wines-inventory').append(wineFile); 
+		$('.wine-inventory_append').append(wineFile); 
 };
 
 //Smooth Scroll
