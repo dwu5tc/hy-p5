@@ -10,25 +10,16 @@
 	}
 }
 
-.wines button{
-	padding: 10px 15px;
-	border: 3px solid $darkPlum;
-	letter-spacing: 2px;
-	border-radius: 10px;
-	color: $darkPlum;
-	outline: rgba(255, 255, 255, 0.25);
-	transition: all 1s;
-	margin-right: 20px;
-	width: 100px;
-	&:hover{
-		background-color: $darkPlum;
-		color: white;
-	}
-}
 
-.wines button.filter--selected{
-	background-color: $darkPlum;
-	color: white;
+.section-title{
+	h2{
+		font-family: $headingFont;
+		margin-bottom: 25px;
+		font-size: 45px;
+		letter-spacing: 2px;
+		color: $darkPlum;
+		text-transform: uppercase;
+	}
 }
 
 .filter-bar {
@@ -98,3 +89,22 @@
 .wine-item:hover .wine-item__info{
 	opacity: 1;
 }
+
+.wines-filter{
+	h3{
+		font-family: $headingFont;
+		margin-bottom: 15px;
+		font-size: 20px;
+		letter-spacing: 2px;
+		color: $darkPlum;
+		text-transform: uppercase;
+	}
+}
+
+.collection{
+	border-top: 5px solid $darkPlum;
+}
+
+
+
+

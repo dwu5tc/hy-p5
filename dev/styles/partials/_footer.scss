@@ -1,3 +1,19 @@
-footer {
-	background-color: red;
+footer{
+	// position: fixed;
+	width: 100%;
+	bottom: 0;
+	z-index: 99999999999;
+	background: $darkPlum;
+	font-size: 14px;
+	padding: 10px 20px;
+	.wrapper{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+footer p{
+	margin: 0;
+	color: white;
 }
