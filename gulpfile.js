@@ -25,7 +25,10 @@ gulp.task("scripts", () => {
 		presets: ["es2015"]
 	}))
 	.pipe(gulp.dest("./public/scripts"))
-	.pipe(reload({stream: true}));
+	.pipe(reload({stream: true}))
+	.on("error", (error) => {
+		console.log(error);
+	});
 });
 
 gulp.task("watch", () => {

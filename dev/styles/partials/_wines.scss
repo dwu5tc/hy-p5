@@ -87,10 +87,10 @@ section.wines{
 
 	// overflow: hidden;
 	transition: all 0.3s;
-	overflow: hidden;
-	&:nth-child(4){
-		clear:both;
-	}
+	// overflow: hidden;
+	// &:nth-child(4){
+	// 	clear:both;
+	// }
 
 	&__img {
 		// position: absolute;
@@ -109,6 +109,7 @@ section.wines{
 	&__name{
 		text-align: center;
 		margin: 1.1em;
+		height: 3em;
 	}
 
 }
