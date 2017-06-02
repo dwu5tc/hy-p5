@@ -8,9 +8,13 @@
 <!-- 	Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display" rel="stylesheet">
 <!-- 	Leaflet JS CDN -->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
-  	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-  	crossorigin=""/>
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   	crossorigin=""/>
+<!--    	Mapbox CDN  -->
+   	<script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
+<!--    	Favicon -->
   	<link rel="shortcut icon" href="images/grapeFavi.png" type="image/x-icon" />
 	<title>Wine it Up!</title>
 	<script src="https://use.fontawesome.com/7d84edbcfa.js"></script>
@@ -83,6 +87,7 @@
 							<button class="filter reds">Reds</button>
 							<button class="filter whites">Whites</button>
 							<button class="filter other">Other</button>
+							<button class="select-filter">Selected</button>
 						</div>	
 					</div>
 					<div class="wines-inventory clearfix">
@@ -91,38 +96,17 @@
 				</div> <!-- wrapper -->
 			</section> <!-- wines --> 
 			<section class="collection keyline">
-				<div class="section-title">
-					<h2>Collection</h2>
+				<div class="wrapper">
+					<div class="section-title">
+						<h2>Collection</h2>
+					</div>
+					<div class="wine-choice">
+						
+					</div>
+				<!-- Map Container -->
+				 	<div id="mapContainer">
+					</div>	
 				</div>
-				<div class="collection-feed">
-					<div class="collection-feed-item">
-						<div class="collection-feed-item__img">
-							<img src="" alt="">
-						</div>
-						<div class="collection-feed-item__info">
-							<p></p>
-						</div>
-					</div>
-					<div class="collection-feed-item">
-						<div class="collection-feed-item__img">
-							<img src="" alt="">
-						</div>
-						<div class="collection-feed-item__info">
-							<p></p>
-						</div>
-					</div>
-					<div class="collection-feed-item">
-						<div class="collection-feed-item__img">
-							<img src="" alt="">
-						</div>
-						<div class="collection-feed-item__info">
-							<p></p>
-						</div>
-					</div>
-				</div> <!-- collection feed -->
-			<!-- Map Container -->
-			 	<div class="mapContainer">
-				 </div>
 			<!--  Map Container Close -->
 			</section> <!-- collection -->
 	</main>
@@ -136,11 +120,11 @@
 <!-- 	TypeIt JS CDN -->
 	<script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/4.4.0/typeit.min.js"></script>
-<!-- 	JS Dev File -->
-	<script src="public/scripts/main.js"></script>
 <!-- 	Leaflet JS CDN -->
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-  	integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-  	crossorigin=""></script>
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+	<!-- Our Main JS -->
+	<script src="public/scripts/main.js"></script>
 </body>
 </html>

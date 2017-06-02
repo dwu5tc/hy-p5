@@ -9,17 +9,26 @@ wineApp.init = function(){
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
 	wineApp.addSelectionListener();
+	wineApp.toggleSelectionsListener();
+	// $("#mapContainer").toggleClass("show");
+	// wineApp.myMap();
 }
 
 //Variables for the KEY!!!
 wineApp.key = 'MDo5MTFjNGNlMi00NGI5LTExZTctYTg1Ni04M2EzZGQxMDM2Zjg6WUN3NUFvVFV6Qno5RzhPZW9nZFhtN05SQTR6elRTbGRVdlBY';
-
+//Variable for VQA Wines
 wineApp.vqa = 'is_vqa';
+//Variable for just current wines
 wineApp.whereNot = 'is_dead,is_discontinued';
+//Array for the VQA Wine List
 wineApp.wineList = [];
+//Array for the PEC Winery List
 wineApp.wineryList = [];
+//Array for user Wine Selections
 wineApp.selections = [];
+//Array for filtering the Wine Types
 wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
+//This is for how many get appended at first.
 wineApp.wineListIndex = 9;
 
 
@@ -92,9 +101,6 @@ wineApp.filterResults = function() {
 	return;
 }
 
-//We are going to be using a google spread sheet api in order to pull the information
-//that we need from the lcbo.
-//Using the vineyards we will compare them to the 
 
 
 //This is to separate out each wine.
@@ -160,7 +166,7 @@ wineApp.addFilterListener = function() {
 			if ($(this).hasClass("filter--selected")) {
 				$(".reds").removeClass("filter--selected");
 				$(".whites").removeClass("filter--selected");
-				$(".other").removeClass("filter--selected");
+				$(".other").removeClass("filter--selected");	
 				wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 				wineApp.refreshInventory();
 				return;
@@ -180,16 +186,61 @@ wineApp.addFilterListener = function() {
 	});
 }
 
+
+//This is for when the wine is "selected"
 wineApp.addSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
 		console.log("SELECTEDYOOOO");
 		$(this).toggleClass("wine-item--selected");
+		if ($(this).hasClass("wine-item--selected")) {
+			wineApp.selections.push(this);
+		}
+		else {
+			wineApp.selections.splice(wineApp.selections.indexOf(this), 1);
+		}
 	});
 }
 
+wineApp.toggleSelectionsListener = function(){
+	$(".select-filter").on("click", function(){
+		$(this).toggleClass("select-filter--selected");
+		if ($(this).hasClass("select-filter--selected")) {
+			var wines = $(".wine-item");
+			console.log(wines);
+			for (var i = 0; i < wines.length; i = i + 1) {
+				if (!(wineApp.selections.includes(wines[i]))) {
+					console.log(i);
+					$(wines[i]).css("transform", "scale(0)");
+					setTimeout(function() {
+						// console.log(currentInventory);
+						$(wines[i]).css("display", "none");
+					}, 300);
+				}
+			}
+
+		}
+		else {
+			$(".wine-item").css("display", "block");
+			setTimeout(function() {
+				$(".wine-item").css("transform", "scale(1)");
+			}, 300);
+		}
+	});
+}
+
+//This is to show the wines that are selected and you are able to filter through them.
+wineApp.selectionFilterListener = function(){
+
+}
+//This is to apply the selected wines to the collection section!
+// wineApp.appendCollection = function(){
+// 	$(".wines-inventory").on("click", ".wine-item", function(){
+// 		$('.wine-choice').append(this);
+// 		$('.wine-choice').removeClass('wine-item--selected');	
+// 	});
+// }
 
 //This is to append more wine choices to our Wine area. Refreshes the inventory.
-
 wineApp.refreshInventory = function() {
 	var currentInventory = $(".wine-item");
 	// console.log(currentInventory);
@@ -231,6 +282,36 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 		}
 	});
 }
+
+
+wineApp.mymap = L.map('mapContainer').setView([44.0003, -77.2505], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW15dHNjaHUiLCJhIjoiY2ozNG5zNmJnMDFrczJ3cDY1ZmI3NXNvMiJ9.xO_RFTtsZqDPHl2EW8d0IQ', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+}).addTo(wineApp.mymap);
+
+//Wine glass marker for winery locations
+wineApp.locationIcon = L.icon({
+	iconUrl: 'assets/wineMarker.svg', // Wine glass image for the map marker
+	iconSize: [70, 70], // dimensions of the icon
+	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
+	popupAnchor: [0, 12.5] // position of the popup relative to the icon
+});
+
+// Function to place markers for wineries on map
+wineApp.placeMapMarkers = function(){
+	//pulling latitude and longitude for each winery in array
+	wineApp.wineryArray.forEach(function(marker) {
+		var lat = marker.lat;
+		var lon = marker.lon;
+		//Leaflet method -> add custom marker to map at lat/longs pulled from above
+		L.marker([lat, lon], {icon: wineApp.locationIcon})
+		.addTo(wineApp.mymap);
+	});	
+}
+
+
 
 //Document Ready!!
 $(function(){
