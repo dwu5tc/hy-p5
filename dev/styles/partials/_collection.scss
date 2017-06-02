@@ -2,10 +2,10 @@
 	height: 80vh;
 	position: relative;
 	animation-duration: 1s;
-	background-color: #222;
+	background-color: $darkPlum;
 }
 
-// Loading Styles
+// Leaflet map loading Styles
 .loading { 
 	display: none;
  	z-index: 1000;
@@ -34,7 +34,7 @@
 		 		p {
 		 			animation-duration: 3s;
 		 			margin: 0;
-		 			font-family: 'PT Sans', sans-serif;
+		 			font-family: '$headingFont';
 		 		}	
  			}
  	}
@@ -53,7 +53,7 @@
 			text-decoration: none;
 			h2 {
 				margin: 0;
-				font-family: 'Ubuntu Condensed', sans-serif;
+				font-family: $headingFont;
 				color: #228942;
 			}
 			h2:hover {
@@ -65,13 +65,13 @@
 			p {
 				margin: 0;
 				color: #5C3A53;
-				font-family: 'PT Sans', sans-serif;
+				font-family: $headingFont;
 				font-size: 14px;
 				letter-spacing: 0px;
 			}
 		}
 		a:hover {
-			color: #5C3A53;
+			color: $plum;
 		}
 }
 
