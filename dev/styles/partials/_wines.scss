@@ -82,11 +82,22 @@ section.wines{
 .wine-item {
 	position: relative;
 	float: left;
-	width: 33.33%;
+	margin: 5px;
+	width: calc(33.33% - 10px);
 	// padding-top: 33.33%; // change this to fit whatever aspect ratio we want
 
 	// overflow: hidden;
 	transition: all 0.3s;
+
+	// overflow: hidden;
+	// &:nth-child(4){
+	// 	clear:both;
+	// }
+	border: 3px solid transparent;
+	&--selected {
+		border: 3px solid $darkPlum;
+	}
+
 
 	&__img {
 		// position: absolute;
@@ -102,10 +113,14 @@ section.wines{
 		opacity: 0;
 		transition: opacity 0.5s;
 	}
-	&__name{
+	&__name {
+		position: relative;
 		text-align: center;
 		margin: 1.1em;
 		height: 3em;
+		h4 {
+			position: relative;
+		}
 	}
 
 }
