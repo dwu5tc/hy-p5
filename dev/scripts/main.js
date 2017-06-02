@@ -180,6 +180,8 @@ wineApp.addFilterListener = function() {
 	});
 }
 
+
+//This is for when the wine is "selected"
 wineApp.addSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
 		console.log("SELECTEDYOOOO");
