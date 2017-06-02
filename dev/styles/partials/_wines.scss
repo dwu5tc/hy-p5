@@ -62,7 +62,6 @@ section.wines{
 		&--selected {
 
 		}
-
 	}
 }
 
@@ -70,7 +69,7 @@ section.wines{
 	width: 100%;
 }
 
-.wine-inventory_append{
+.wine-inventory_append {
 	max-width: 30%;
 	float: left;
 	clear: both;
@@ -84,21 +83,11 @@ section.wines{
 	float: left;
 	margin: 5px;
 	width: calc(33.33% - 10px);
-	// padding-top: 33.33%; // change this to fit whatever aspect ratio we want
-
-	// overflow: hidden;
 	transition: all 0.3s;
-
-	// overflow: hidden;
-	// &:nth-child(4){
-	// 	clear:both;
-	// }
 	border: 3px solid transparent;
 	&--selected {
 		border: 3px solid $darkPlum;
 	}
-
-
 	&__img {
 		// position: absolute;
 		position: relative;
@@ -122,12 +111,10 @@ section.wines{
 			position: relative;
 		}
 	}
-
 }
 
 .wine-item__info{
 	// display: none;
-	
 }
 
 .p-info {
