@@ -119,9 +119,15 @@ section.wines{
 	position: absolute;
 	width: 100%;
 	p {
+		font-family: $headingFont;
+		letter-spacing: 1px;
 		color: white;
+		margin-bottom: 6px;
 		text-align: center;
 		font-size: 16;
+		&:last-of-type{
+			margin-bottom: 0;
+		}
 	}
 }
 
@@ -144,6 +150,11 @@ section.wines{
 	border-top: 5px solid $darkPlum;
 }
 
-
+button.collection_smoothScroll{
+	clear: both;
+	width: auto;
+	display: block;
+	margin: auto;
+}
 
 
