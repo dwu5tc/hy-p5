@@ -231,6 +231,7 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 	});
 }
 
+
 //Document Ready!!
 $(function(){
 	wineApp.init();
