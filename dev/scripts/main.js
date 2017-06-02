@@ -15,13 +15,19 @@ wineApp.init = function(){
 
 //Variables for the KEY!!!
 wineApp.key = 'MDo5MTFjNGNlMi00NGI5LTExZTctYTg1Ni04M2EzZGQxMDM2Zjg6WUN3NUFvVFV6Qno5RzhPZW9nZFhtN05SQTR6elRTbGRVdlBY';
-
+//Variable for VQA Wines
 wineApp.vqa = 'is_vqa';
+//Variable for just current wines
 wineApp.whereNot = 'is_dead,is_discontinued';
+//Array for the VQA Wine List
 wineApp.wineList = [];
+//Array for the PEC Winery List
 wineApp.wineryList = [];
+//Array for user Wine Selections
 wineApp.selections = [];
+//Array for filtering the Wine Types
 wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
+//This is for how many get appended at first.
 wineApp.wineListIndex = 9;
 
 
@@ -186,11 +192,18 @@ wineApp.addSelectionListener = function() {
 		console.log("SELECTEDYOOOO");
 		$(this).toggleClass("wine-item--selected");
 	});
+	// wineApp.appendCollection();
 }
 
+//This is to apply the selected wines to the collection section!
+// wineApp.appendCollection = function(){
+// 	$(".wines-inventory").on("click", ".wine-item", function(){
+// 		$('.wine-choice').append(this);
+// 		$('.wine-choice').removeClass('wine-item--selected');	
+// 	});
+// }
 
 //This is to append more wine choices to our Wine area. Refreshes the inventory.
-
 wineApp.refreshInventory = function() {
 	var currentInventory = $(".wine-item");
 	console.log(currentInventory);
@@ -232,10 +245,6 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 	});
 }
 
-//This is to apply the selected wines to the collection section!
-wineApp.appendCollection = function(){
-
-}
 
 wineApp.mymap = L.map('mapContainer').setView([51.505, -0.09], 13);
 
