@@ -315,15 +315,17 @@ wineApp.placeMapMarkers = function(){
 
 
 //Document Ready!!
+
 $(function(){
 	wineApp.init();
 	$('.type-it').typeIt({
-     strings: ["Wine it up!", "Wines of Prince Edward County"],
-     speed: 150,
-     breakLines: true,
-     autoStart: false
+	     strings: ["Wine It Up!", "Wines of Prince Edward County"],
+	     speed: 200,
+	     breakLines: true,
+	     autoStart: false,
+	     cursor: false	
+	})
 });
-})
 
 
 
