@@ -9,8 +9,8 @@ wineApp.init = function(){
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
 	wineApp.addSelectionListener();
-	$("#mapContainer").toggleClass("show");
-	wineApp.myMap();
+	// $("#mapContainer").toggleClass("show");
+	// wineApp.myMap();
 }
 
 //Variables for the KEY!!!
@@ -237,7 +237,7 @@ wineApp.appendCollection = function(){
 
 }
 
-wineApp.mymap = L.map('mapContainer').setView([51.505, -0.09], 13);
+wineApp.mymap = L.map('mapContainer').setView([44.0003, -77.2505], 13);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW15dHNjaHUiLCJhIjoiY2ozNG5zNmJnMDFrczJ3cDY1ZmI3NXNvMiJ9.xO_RFTtsZqDPHl2EW8d0IQ', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
