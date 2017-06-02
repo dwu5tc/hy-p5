@@ -115,6 +115,7 @@ wineApp.getEachWine = function(wines){
 wineApp.displayWine = function(item) {
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
+						<i class="fa fa-check hidden" aria-hidden="true"></i>
 						<figure class="wine-item__img">
 							<img src="${item.image_url}" alt="">
 							<figcation class="wine-item__info">
@@ -191,7 +192,7 @@ wineApp.addFilterListener = function() {
 wineApp.addSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
 		console.log("SELECTEDYOOOO");
-		$(this).toggleClass("wine-item--selected");
+		$(this).find("i").toggleClass("hidden");
 		if ($(this).hasClass("wine-item--selected")) {
 			wineApp.selections.push(this);
 		}
