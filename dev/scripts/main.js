@@ -39,7 +39,7 @@ wineApp.getPECList = function() {
 wineApp.filterPEC = function(item) {
 	// console.log(item);
 	if (wineApp.wineryList.includes(item.producer_name)) {
-		console.log(item);
+		// console.log(item);
 		return true;
 	}
 	return false;
@@ -193,20 +193,20 @@ wineApp.addSelectionListener = function() {
 
 wineApp.refreshInventory = function() {
 	var currentInventory = $(".wine-item");
-	console.log(currentInventory);
+	// console.log(currentInventory);
 	for (var i = 0; i < currentInventory.length; i++) {
 		(function(i) {
 			if (wineApp.currentFilters.includes(currentInventory[i].dataset.type)) {
-				$(currentInventory[i]).css("transform", "scale(1)");
+				$(currentInventory[i]).css("display", "block");
 				setTimeout(function() {
-					console.log(currentInventory);
-					$(currentInventory[i]).css("display", "block");
+					// console.log(currentInventory);
+					$(currentInventory[i]).css("transform", "scale(1)");
 				}, 300);
 			}
 			else {
 				$(currentInventory[i]).css("transform", "scale(0)");
 				setTimeout(function() {
-					console.log(currentInventory);
+					// console.log(currentInventory);
 					$(currentInventory[i]).css("display", "none");
 				}, 300);
 			}
@@ -218,9 +218,10 @@ wineApp.refreshInventory = function() {
 //Adds more updates on scroll.
 wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter on and scrolls down but nothing corresponding to their filtered category appears
 	$(window).scroll(function() {
-		if (wineApp.wineListIndex <= wineApp.wineList.length) {
-			if ($(window).scrollTop()+$(window).height() > $(document).height()-0) {
-				console.log(wineApp.wineListIndex);
+		if (wineApp.wineListIndex <= wineApp.wineList.length && wineApp.currentFilters.length != 0) {
+			if ($(window).scrollTop()+$(window).height() > $(document).height()-10) {
+				console.log("TO THE BOTTOM");
+				// console.log(wineApp.wineListIndex);
 				for (var i = wineApp.wineListIndex; i < wineApp.wineListIndex+9; i++) {
 					if (i >= wineApp.wineList.length) { break; }
 					wineApp.displayWine(wineApp.wineList[i]);
