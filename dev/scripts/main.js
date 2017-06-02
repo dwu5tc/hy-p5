@@ -92,9 +92,6 @@ wineApp.filterResults = function() {
 	return;
 }
 
-//We are going to be using a google spread sheet api in order to pull the information
-//that we need from the lcbo.
-//Using the vineyards we will compare them to the 
 
 
 //This is to separate out each wine.
@@ -233,6 +230,10 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 	});
 }
 
+//This is to apply the selected wines to the collection section!
+wineApp.appendCollection = function(){
+
+}
 
 //Document Ready!!
 $(function(){
