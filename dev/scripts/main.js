@@ -9,6 +9,7 @@ wineApp.init = function(){
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
 	wineApp.addSelectionListener();
+	wineApp.toggleSelectionsListener();
 	// $("#mapContainer").toggleClass("show");
 	// wineApp.myMap();
 }
@@ -165,7 +166,7 @@ wineApp.addFilterListener = function() {
 			if ($(this).hasClass("filter--selected")) {
 				$(".reds").removeClass("filter--selected");
 				$(".whites").removeClass("filter--selected");
-				$(".other").removeClass("filter--selected");
+				$(".other").removeClass("filter--selected");	
 				wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 				wineApp.refreshInventory();
 				return;
@@ -191,10 +192,46 @@ wineApp.addSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
 		console.log("SELECTEDYOOOO");
 		$(this).toggleClass("wine-item--selected");
+		if ($(this).hasClass("wine-item--selected")) {
+			wineApp.selections.push(this);
+		}
+		else {
+			wineApp.selections.splice(wineApp.selections.indexOf(this), 1);
+		}
 	});
-	// wineApp.appendCollection();
 }
 
+wineApp.toggleSelectionsListener = function(){
+	$(".select-filter").on("click", function(){
+		$(this).toggleClass("select-filter--selected");
+		if ($(this).hasClass("select-filter--selected")) {
+			var wines = $(".wine-item");
+			console.log(wines);
+			for (var i = 0; i < wines.length; i = i + 1) {
+				if (!(wineApp.selections.includes(wines[i]))) {
+					console.log(i);
+					$(wines[i]).css("transform", "scale(0)");
+					setTimeout(function() {
+						// console.log(currentInventory);
+						$(wines[i]).css("display", "none");
+					}, 300);
+				}
+			}
+
+		}
+		else {
+			$(".wine-item").css("display", "block");
+			setTimeout(function() {
+				$(".wine-item").css("transform", "scale(1)");
+			}, 300);
+		}
+	});
+}
+
+//This is to show the wines that are selected and you are able to filter through them.
+wineApp.selectionFilterListener = function(){
+
+}
 //This is to apply the selected wines to the collection section!
 // wineApp.appendCollection = function(){
 // 	$(".wines-inventory").on("click", ".wine-item", function(){
