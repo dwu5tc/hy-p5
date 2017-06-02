@@ -87,7 +87,6 @@ section.wines{
 
 	// overflow: hidden;
 	transition: all 0.3s;
-	overflow: hidden;
 
 	&__img {
 		// position: absolute;
@@ -106,6 +105,7 @@ section.wines{
 	&__name{
 		text-align: center;
 		margin: 1.1em;
+		height: 3em;
 	}
 
 }

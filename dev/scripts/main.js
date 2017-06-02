@@ -7,6 +7,7 @@ wineApp.init = function(){
 	wineApp.getPECList();
 	wineApp.smoothScroll();
 	wineApp.addFilterListener();
+	wineApp.addUpdateOnScrollListener();
 }
 
 //Variables for the KEY!!!
@@ -18,6 +19,7 @@ wineApp.whereNot = 'is_dead,is_discontinued';
 wineApp.wineList = [];
 wineApp.wineryList = [];
 wineApp.currentFilters = [];
+wineApp.wineListIndex = 9;
 
 //Here is the Ajax call to LCBO API!
 // wineApp.getWine = function(){
@@ -78,7 +80,7 @@ wineApp.getAllWines = function(n) {
 		else {
 			// last step: this will filter for all of the wines in PEC 
 			wineApp.wineList = wineApp.wineList.filter(wineApp.filterPEC);
-			for (var i = 0; i < 9; i++) {
+			for (var i = 0; i < wineApp.wineListIndex; i++) {
 				wineApp.displayWine(wineApp.wineList[i]);
 			}
 			return;
@@ -210,6 +212,22 @@ wineApp.refreshInventory = function() {
 			}
 		})(i);
 	}
+}
+
+wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter on and scrolls down but nothing corresponding to their filtered category appears
+	$(window).scroll(function() {
+		if (wineApp.wineListIndex <= wineApp.wineList.length) {
+			if ($(window).scrollTop()+$(window).height() > $(document).height()-0) {
+				console.log(wineApp.wineListIndex);
+				for (var i = wineApp.wineListIndex; i < wineApp.wineListIndex+9; i++) {
+					if (i >= wineApp.wineList.length) { break; }
+					wineApp.displayWine(wineApp.wineList[i]);
+				}
+				wineApp.wineListIndex += 9;
+				wineApp.refreshInventory();
+			}
+		}
+	});
 }
 
 //Document Ready!!
