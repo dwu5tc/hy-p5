@@ -9,6 +9,8 @@ wineApp.init = function(){
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
 	wineApp.addSelectionListener();
+	$("#mapContainer").toggleClass("show");
+	wineApp.myMap();
 }
 
 //Variables for the KEY!!!
@@ -232,6 +234,35 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 		}
 	});
 }
+
+
+wineApp.mymap = L.map('mapContainer').setView([51.505, -0.09], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW15dHNjaHUiLCJhIjoiY2ozNG5zNmJnMDFrczJ3cDY1ZmI3NXNvMiJ9.xO_RFTtsZqDPHl2EW8d0IQ', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+}).addTo(wineApp.mymap);
+
+//Wine glass marker for winery locations
+wineApp.locationIcon = L.icon({
+	iconUrl: 'assets/wineMarker.svg', // Wine glass image for the map marker
+	iconSize: [70, 70], // dimensions of the icon
+	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
+	popupAnchor: [0, 12.5] // position of the popup relative to the icon
+});
+
+// Function to place markers for wineries on map
+wineApp.placeMapMarkers = function(){
+	//pulling latitude and longitude for each winery in array
+	wineApp.wineryArray.forEach(function(marker) {
+		var lat = marker.lat;
+		var lon = marker.lon;
+		//Leaflet method -> add custom marker to map at lat/longs pulled from above
+		L.marker([lat, lon], {icon: wineApp.locationIcon})
+		.addTo(wineApp.mymap);
+	});	
+}
+
 
 
 //Document Ready!!
