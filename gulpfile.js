@@ -26,7 +26,7 @@ gulp.task("scripts", () => {
 	}))
 	.pipe(gulp.dest("./public/scripts"))
 	.pipe(reload({stream: true}))
-	.on("error", (error) => {
+	.on("error", function(error) {
 		console.log(error);
 	});
 });
@@ -38,4 +38,5 @@ gulp.task("watch", () => {
 });
 
 gulp.task("default", ["browser-sync", "watch", "styles", "scripts"]);
+
 

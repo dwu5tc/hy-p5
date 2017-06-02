@@ -8,37 +8,19 @@ wineApp.init = function(){
 	wineApp.smoothScroll();
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
+	wineApp.addSelectionListener();
 }
 
 //Variables for the KEY!!!
 wineApp.key = 'MDo5MTFjNGNlMi00NGI5LTExZTctYTg1Ni04M2EzZGQxMDM2Zjg6WUN3NUFvVFV6Qno5RzhPZW9nZFhtN05SQTR6elRTbGRVdlBY';
 
 wineApp.vqa = 'is_vqa';
-
 wineApp.whereNot = 'is_dead,is_discontinued';
 wineApp.wineList = [];
 wineApp.wineryList = [];
-wineApp.currentFilters = [];
+wineApp.selections = [];
+wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 wineApp.wineListIndex = 9;
-
-//Here is the Ajax call to LCBO API!
-// wineApp.getWine = function(){
-// 	$.ajax({
-// 		url: 'https://lcboapi.com/products',
-// 		method: 'GET',
-// 		dataType: 'json',
-// 		data: {
-// 			access_key: wineApp.key,
-// 			per_page: 100,
-// 			page: 1,
-// 			where: wineApp.vqa,
-// 			where_not: wineApp.whereNot,
-// 			volume_in_milliliters: 750
-// 		}
-// 	}).then(function(data){
-// 		wineApp.getEachWine(data.result);
-// 	});
-// };
 
 
 // this will get the list of PEC wineries from sheetsu
@@ -140,7 +122,7 @@ wineApp.displayWine = function(item) {
 							</figcation>
 						</figure>
 						<div class="wine-item__name">
-							<h4>${item.name}</h4>
+							<h4 class="xy-center">${item.name}</h4>
 						</div>
 					</div>`
 		$(".wines-inventory").append(temp);
@@ -188,6 +170,13 @@ wineApp.addFilterListener = function() {
 		}
 		$(".all").removeClass("filter--selected");
 		wineApp.refreshInventory();
+	});
+}
+
+wineApp.addSelectionListener = function() {
+	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
+		console.log("SELECTEDYOOOO");
+		$(this).toggleClass("wine-item--selected");
 	});
 }
 
