@@ -105,7 +105,7 @@ wineApp.getEachWine = function(wines){
 
 
 // Display this info for each wine on the page.
-
+//Look at that variable baby!
 wineApp.displayWine = function(item) {
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
@@ -116,7 +116,7 @@ wineApp.displayWine = function(item) {
 									<p>${item.producer_name}</p>
 									<p>${item.package}</p>
 									<p>${item.style}</p>
-									<p>${item.id}</p>
+									<p>LCBO ID - ${item.id}</p>
 									<p>${item.sugar_content}</p>
 								</div>
 							</figcation>
@@ -142,8 +142,15 @@ wineApp.smoothScroll = function(){
 			scrollTop: $('.about').offset().top},
 			1500);
 	});
+	$('.collection_smoothScroll').on('click', function(){
+		$('html, body').animate({
+			scrollTop: $('.collection').offset().top},
+			1500);
+	})
 }
 
+
+//This is to filter the selection when Clicking on of the buttons.
 wineApp.addFilterListener = function() {
 	$(".filter").on("click", function() {
 		wineApp.currentFilters = [];
@@ -180,6 +187,9 @@ wineApp.addSelectionListener = function() {
 	});
 }
 
+
+//This is to append more wine choices to our Wine area. Refreshes the inventory.
+
 wineApp.refreshInventory = function() {
 	var currentInventory = $(".wine-item");
 	console.log(currentInventory);
@@ -203,6 +213,8 @@ wineApp.refreshInventory = function() {
 	}
 }
 
+
+//Adds more updates on scroll.
 wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter on and scrolls down but nothing corresponding to their filtered category appears
 	$(window).scroll(function() {
 		if (wineApp.wineListIndex <= wineApp.wineList.length) {
@@ -224,7 +236,7 @@ $(function(){
 	wineApp.init();
 	$('.type-it').typeIt({
      strings: ["Wine it up!", "Wines of Prince Edward County"],
-     speed: 210,
+     speed: 150,
      breakLines: true,
      autoStart: false
 });
