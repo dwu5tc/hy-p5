@@ -1,20 +1,8 @@
 section.wines{
 	padding: 4em 0;
-	width: 50%;	
 }
 
-.wrapper {
-	width: 95%;
-	margin: 0 auto;
-}
-
-.wines-filter {
-	position: relative;
-	h3 {
-		text-align: center;
-	}
-}
-
+//BUTTON STYLING
 .wines button{
 	padding: 10px 15px;
 	border: 3px solid $darkPlum;
@@ -34,21 +22,28 @@ button.selected{
 	margin-right: 0;
 }
 
-.filter-bar{
-	margin-bottom: 20px;
-}
-
 .wines button.filter--selected,
 .wines button.select-filter--selected{
 	background-color: $darkPlum;
 	color: white;
 }
 
+//WRAPPER
+.wrapper {
+	width: 95%;
+	margin: 0 auto;
+}
+
+//TITLE AREA
+.titleArea{
+	margin: 0 auto;
+	max-width: 100%;
+}
 
 .section-title{
 	h2{
 		font-family: $headingFont;
-		margin-bottom: 25px;
+		margin-bottom: 20px;
 		font-size: 45px;
 		letter-spacing: 2px;
 		color: $darkPlum;
@@ -56,22 +51,38 @@ button.selected{
 	}
 }
 
-.filter-bar {
+.wines-filter {
 	position: relative;
-	display: inline-block;
-	.filter {
-		margin-right: 15px;
-		&:last-child {
-			margin-right: 0px;
-		}
-		&--selected {
+	h3 {
+		text-align: center;
+		font-family: $headingFont;
+		margin-bottom: 20px;
+		font-size: 20px;
+		letter-spacing: 2px;
+		color: $darkPlum;
+		text-transform: uppercase;
+	}
+	.filter-bar{
+		margin-bottom: 20px;
+		position: relative;
+		display: inline-block;
+		.filter {
+			margin-right: 15px;
+			&:last-child {
+				margin-right: 0px;
+			}
+			&--selected {
 
+			}
 		}
 	}
 }
 
+
+//WINE LIST STYLING
 .wines-inventory {
-	width: 100%;
+	width: 50%;
+	float: left;
 }
 
 .wine-inventory_append {
@@ -115,10 +126,7 @@ button.selected{
 	}
 }
 
-.wine-item__info{
-	// display: none;
-}
-
+//HOVER WINE INFO
 .p-info {
 	position: absolute;
 	width: 100%;
@@ -128,7 +136,7 @@ button.selected{
 		color: white;
 		margin-bottom: 6px;
 		text-align: center;
-		font-size: 16;
+		font-size: 12px;
 		&:last-of-type{
 			margin-bottom: 0;
 		}
@@ -139,17 +147,7 @@ button.selected{
 	opacity: 1;
 }
 
-.wines-filter{
-	h3{
-		font-family: $headingFont;
-		margin-bottom: 15px;
-		font-size: 20px;
-		letter-spacing: 2px;
-		color: $darkPlum;
-		text-transform: uppercase;
-	}
-}
-
+//COLLECTION BUTTON STYLING BUT WILL PROBABLY NEED TO BE DELETED!
 .collection{
 	border-top: 5px solid $darkPlum;
 }
@@ -161,6 +159,8 @@ button.collection_smoothScroll{
 	margin: auto;
 }
 
+
+//SELECTED STYLING STUFF
 i.fa{
 	z-index: 10;
 	position: absolute;
@@ -172,9 +172,4 @@ i.fa{
 
 i.hidden{
 	display: none;
-}
-
-.titleArea{
-	margin: 0 auto;
-	max-width: 100%;
 }
