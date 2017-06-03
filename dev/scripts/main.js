@@ -31,7 +31,6 @@ wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Win
 //This is for how many get appended at first.
 wineApp.wineListIndex = 9;
 
-
 // this will get the list of PEC wineries from sheetsu
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
@@ -232,13 +231,8 @@ wineApp.toggleSelectionsListener = function(){
 wineApp.selectionFilterListener = function(){
 
 }
-//This is to apply the selected wines to the collection section!
-// wineApp.appendCollection = function(){
-// 	$(".wines-inventory").on("click", ".wine-item", function(){
-// 		$('.wine-choice').append(this);
-// 		$('.wine-choice').removeClass('wine-item--selected');	
-// 	});
-// }
+
+
 
 //This is to append more wine choices to our Wine area. Refreshes the inventory.
 wineApp.refreshInventory = function() {
@@ -283,9 +277,10 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 	});
 }
 
-
+//This is the leaflet map
 wineApp.mymap = L.map('mapContainer', { zoomControl: false, scrollWheelZoom: false }).setView([44.0003, -77.2505], 11);
 
+//The leafley map API
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW15dHNjaHUiLCJhIjoiY2ozNG5zNmJnMDFrczJ3cDY1ZmI3NXNvMiJ9.xO_RFTtsZqDPHl2EW8d0IQ', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 }).addTo(wineApp.mymap);
@@ -327,6 +322,7 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
+
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
@@ -351,16 +347,8 @@ wineApp.updateWineryList = function() {
 }
 
 //Document Ready!!
-
 $(function(){
 	wineApp.init();
-	$('.type-it').typeIt({
-	     strings: ["Wine It Up!", "Wines of Prince Edward County"],
-	     speed: 200,
-	     breakLines: true,
-	     autoStart: false,
-	     cursor: false	
-	})
 });
 
 
