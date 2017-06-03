@@ -70,7 +70,11 @@ wineApp.getAllWines = function(n) {
 		else {
 			// last step: this will filter for all of the wines in PEC 
 			wineApp.wineList = wineApp.wineList.filter(wineApp.filterPEC);
-			wineApp.updateWineryList();
+			for (var i = 0; i < wineApp.wineListIndex; i++) {
+				wineApp.appendItem(wineApp.wineList[i]);
+			}
+      wineApp.updateWineryList();
+			return;
 		}
 	});
 }
@@ -93,22 +97,9 @@ wineApp.getWine = function(pageNum) {
 	});
 }
 
-wineApp.filterResults = function() {
-	return;
-}
-
-
-
-//This is to separate out each wine.
-wineApp.getEachWine = function(wines){
-	wines.forEach(function(wine){
-	});
-}
-
-
 // Display this info for each wine on the page.
 //Look at that variable baby!
-wineApp.displayWine = function(item) {
+wineApp.appendItem = function(item) {
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
 						<i class="fa fa-check hidden" aria-hidden="true"></i>
@@ -130,6 +121,20 @@ wineApp.displayWine = function(item) {
 					</div>`
 		$(".wines-inventory").append(temp);
 	}
+}
+
+wineApp.hideItem = function(item) {
+	item.css("transform", "scale(0)");
+	setTimeout(function() {
+		item.css("display", "none");
+	}, 300);
+}
+
+wineApp.displayItem = function(item) {
+	item.css("display", "block");
+	setTimeout(function() {
+		item.css("transform", "scale(1)");
+	}, 300);
 }
 
 
@@ -163,7 +168,7 @@ wineApp.addFilterListener = function() {
 			if ($(this).hasClass("filter--selected")) {
 				$(".reds").removeClass("filter--selected");
 				$(".whites").removeClass("filter--selected");
-				$(".other").removeClass("filter--selected");	
+				$(".other").removeClass("filter--selected");
 				wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 				wineApp.refreshInventory();
 				return;
@@ -198,30 +203,27 @@ wineApp.addSelectionListener = function() {
 	});
 }
 
+
 wineApp.toggleSelectionsListener = function(){
 	$(".select-filter").on("click", function(){
 		$(this).toggleClass("select-filter--selected");
-		if ($(this).hasClass("select-filter--selected")) {
-			var wines = $(".wine-item");
-			console.log(wines);
-			for (var i = 0; i < wines.length; i = i + 1) {
-				if (!(wineApp.selections.includes(wines[i]))) {
-					console.log(i);
-					$(wines[i]).css("transform", "scale(0)");
-					setTimeout(function() {
-						// console.log(currentInventory);
-						$(wines[i]).css("display", "none");
-					}, 300);
-				}
-			}
-
-		}
-		else {
-			$(".wine-item").css("display", "block");
-			setTimeout(function() {
-				$(".wine-item").css("transform", "scale(1)");
-			}, 300);
-		}
+		wineApp.refreshInventory();
+		// if ($(this).hasClass("select-filter--selected")) {
+		// 	var wines = $(".wine-item");
+		// 	console.log(wines);
+		// 	for (var i = 0; i < wines.length; i = i + 1) {
+		// 		if (!(wineApp.selections.includes(wines[i]))) {
+		// 			console.log(i);
+		// 			wineApp.hide(wines[i]);
+		// 		}
+		// 	}
+		// }
+		// else {
+		// 	$(".wine-item").css("display", "block");
+		// 	setTimeout(function() {
+		// 		$(".wine-item").css("transform", "scale(1)");
+		// 	}, 300);
+		// }
 	});
 }
 
@@ -235,27 +237,27 @@ wineApp.selectionFilterListener = function(){
 //This is to append more wine choices to our Wine area. Refreshes the inventory.
 wineApp.refreshInventory = function() {
 	var currentInventory = $(".wine-item");
-	// console.log(currentInventory);
-	for (var i = 0; i < currentInventory.length; i++) {
+	for (var i = 0; i < currentInventory.length; i++) { //IIFE
 		(function(i) {
-			if (wineApp.currentFilters.includes(currentInventory[i].dataset.type)) {
-				$(currentInventory[i]).css("display", "block");
-				setTimeout(function() {
-					// console.log(currentInventory);
-					$(currentInventory[i]).css("transform", "scale(1)");
-				}, 300);
+			if ($(".select-filter").hasClass("select-filter--selected")) {
+				if (wineApp.currentFilters.includes(currentInventory[i].dataset.type) && $(currentInventory[i]).hasClass("wine-item--selected")) {
+					wineApp.displayItem($(currentInventory[i]));
+				}
+				else {
+					wineApp.hideItem($(currentInventory[i]));
+				}
 			}
 			else {
-				$(currentInventory[i]).css("transform", "scale(0)");
-				setTimeout(function() {
-					// console.log(currentInventory);
-					$(currentInventory[i]).css("display", "none");
-				}, 300);
+				if (wineApp.currentFilters.includes(currentInventory[i].dataset.type)) {
+					wineApp.displayItem($(currentInventory[i]));
+				}
+				else {
+					wineApp.hideItem($(currentInventory[i]));
+				}
 			}
 		})(i);
 	}
 }
-
 
 //Adds more updates on scroll.
 wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter on and scrolls down but nothing corresponding to their filtered category appears
@@ -263,10 +265,10 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 		if (wineApp.wineListIndex <= wineApp.wineList.length && wineApp.currentFilters.length != 0) {
 			if ($(window).scrollTop()+$(window).height() > $(document).height()-10) {
 				console.log("TO THE BOTTOM");
-				// console.log(wineApp.wineListIndex);
+				console.log(wineApp.wineListIndex);
 				for (var i = wineApp.wineListIndex; i < wineApp.wineListIndex+9; i++) {
 					if (i >= wineApp.wineList.length) { break; }
-					wineApp.displayWine(wineApp.wineList[i]);
+					wineApp.appendItem(wineApp.wineList[i]);
 				}
 				wineApp.wineListIndex += 9;
 				wineApp.refreshInventory();
