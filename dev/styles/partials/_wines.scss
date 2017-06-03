@@ -90,9 +90,6 @@ button.selected{
 	width: calc(33.33% - 10px);
 	transition: all 0.3s;
 	border: 3px solid transparent;
-	&--selected {
-		border: 3px solid $darkPlum;
-	}
 	&__img {
 		// position: absolute;
 		position: relative;
@@ -164,4 +161,15 @@ button.collection_smoothScroll{
 	margin: auto;
 }
 
+i.fa{
+	z-index: 10;
+	position: absolute;
+	left: 20px;
+	top: 10px;
+	font-size: 25px;
+	color: $darkPlum;
+}
 
+i.hidden{
+	display: none;
+}
