@@ -38,7 +38,8 @@ button.selected{
 	margin-bottom: 20px;
 }
 
-.wines button.filter--selected{
+.wines button.filter--selected,
+.wines button.select-filter--selected{
 	background-color: $darkPlum;
 	color: white;
 }
