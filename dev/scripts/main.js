@@ -45,6 +45,7 @@ wineApp.typeItOut = function(string) {
 	}, 500);
 }
 
+
 // this will get the list of PEC wineries from sheetsu
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
@@ -294,12 +295,13 @@ wineApp.updateWineryList = function(lat, lng) {
 	.then(function(resp) {
 		// console.log(resp);
 	}).then(function(wineryData) {
+		console.log(wineryData);
 		//store winery object into global variable
-		wineryList = wineryData;
+		resp = wineryData;
 		//"for each" function to obtain data for every individual winery object
 		wineryList.forEach(function(wineryList){
 			//store individual values for each winery for lat/lon position + additional map display info 
-			wineApp.updateWineryList.push({
+			wineApp.updateWineryLocation.push({
 				lat: resp["Lat"], 
 				lng: resp["Lng"],
 				name: resp["Winery Name"],
@@ -348,7 +350,6 @@ wineApp.placeMapMarkers = function(){
 		.addTo(wineApp.mymap);
 	});	
 }
-
 
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
