@@ -11,8 +11,11 @@ wineApp.init = function(){
 	wineApp.addWineSelectionListener();
 	wineApp.addSelectionFilterListener();
 	wineApp.typeItOut(wineApp.headerString);
+	
 	// $("#mapContainer").toggleClass("show");
 	// wineApp.myMap();
+	// wineApp.updateWineryList();
+	wineApp.placeMapMarkers();
 }
 
 //Variables for the KEY!!!
@@ -31,7 +34,7 @@ wineApp.selections = [];
 wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 //This is for how many get appended at first.
 wineApp.wineListIndex = 9;
-wineApp.headerString = "Wine it Up";
+wineApp.headerString = "Wine it Up!";
 wineApp.headerIndex = 0;
 
 wineApp.typeItOut = function(string) {
@@ -41,8 +44,8 @@ wineApp.typeItOut = function(string) {
 		}
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
-		console.log(wineApp.headerIndex);
-	}, 500);
+		// console.log(wineApp.headerIndex);
+	}, 350);
 }
 
 
@@ -115,11 +118,11 @@ wineApp.getWine = function(pageNum) {
 // Display this info for each wine on the page.
 //Look at that variable baby!
 wineApp.appendItem = function(item) {
+	console.log(item);
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
 						<i class="fa fa-check hidden" aria-hidden="true"></i>
 						<figure class="wine-item__img">
-							<img src="${item.image_url}" alt="">
 							<figcation class="wine-item__info">
 								<div class="p-info xy-center">
 									<p>${item.producer_name}</p>
@@ -290,6 +293,14 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 // -------------- To get winery markers on page ------------------
 
 // Pass in latitute and longitute of each winery 
+
+wineApp.updateWineryList = function() {
+    $.when(wineApp.getPEC())
+    .then(function(resp) {
+        wineApp.wineryList = resp;
+        // console.log(wineApp.wineryList);
+    });
+
 wineApp.updateWineryList = function(lat, lng) {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
@@ -312,7 +323,9 @@ wineApp.updateWineryList = function(lat, lng) {
 		//call function to place markers (wine glasses) on map at winery coordinates
 		wineApp.placeMapMarkers();
 	});
+>>>>>>> bc4a8840a423b14069a7a7a3da04f6d14f1023af
 }
+
 
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
@@ -322,16 +335,17 @@ wineApp.locationIcon = L.icon({
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
 
-
 // // Function to place markers for wineries on map
 wineApp.placeMapMarkers = function(){
 	//pulling latitude and longitude for each winery in array
-	wineApp.wineryArray.forEach(function(marker) {
+	// console.log(wineApp.wineryArray);
+	wineApp.wineryList.forEach(function(marker) {
 		var lat = marker.Lat;
 		var lng = marker.Lng;
 		//Leaflet method -> add custom marker to map at lat/longs pulled from above
 		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
 		//Leaflet  method to create "pop up" when marker clicked
+		console.log('yooooooo')
 		.bindPopup(
 		//template literal content for marker popups
 			`<div class="winery-popup">
@@ -351,6 +365,29 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
+<<<<<<< HEAD
+
+// wineApp.updateWineryList = function() {
+// 	$.when(wineApp.getPEC())
+// 	.then(function(resp) {
+// 		// console.log(resp);
+// 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
+// 			var temp = {
+// 				name: n,
+// 				lat: resp["Lat"],
+// 				lng: resp["Lng"],
+// 				number: resp["Phone"],
+// 				url: resp["Website"]
+// 			}
+// 			return temp;
+// 		});		
+// 		for (var i = 0; i < wineApp.wineListIndex; i++) {
+// 			wineApp.appendItem(wineApp.wineList[i]);
+// 		}
+// 		return;
+// 	});
+// }
+=======
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
@@ -371,6 +408,7 @@ wineApp.updateWineryList = function() {
 		return;
 	});
 }
+>>>>>>> bc4a8840a423b14069a7a7a3da04f6d14f1023af
 
 // wineApp.updateWineryList = function() {
 // 	$.when(wineApp.getPEC())
