@@ -277,8 +277,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 wineApp.updateWineryList = function(lat, lng) {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		// console.log(resp);
-
+		console.log(resp);
 	}).then(function(wineryData) {
 		//store winery object into global variable
 		wineryList = wineryData;
@@ -314,7 +313,7 @@ wineApp.placeMapMarkers = function(){
 		var lat = marker.Lat;
 		var lng = marker.Lng;
 		//Leaflet method -> add custom marker to map at lat/longs pulled from above
-		L.marker([lat, lon], {icon: wineApp.locationIcon})
+		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
 		//Leaflet  method to create "pop up" when marker clicked
 		.bindPopup(
 		//template literal content for marker popups
