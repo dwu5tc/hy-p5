@@ -354,19 +354,17 @@ wineApp.placeMapMarkers = function(){
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		console.log(resp);
-		console.log('listbefore', wineApp.wineryList);
+		// console.log(resp);
 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
 			var temp = {
 				name: n,
 				lat: resp["Lat"],
-				lng: resp["Lon"],
+				lng: resp["Lng"],
 				number: resp["Phone"],
 				url: resp["Website"]
 			}
 			return temp;
 		});		
-		console.log('listafter', wineApp.wineryList);
 		for (var i = 0; i < wineApp.wineListIndex; i++) {
 			wineApp.appendItem(wineApp.wineList[i]);
 		}
