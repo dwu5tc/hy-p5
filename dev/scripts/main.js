@@ -31,6 +31,7 @@ wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Win
 //This is for how many get appended at first.
 wineApp.wineListIndex = 9;
 
+
 // this will get the list of PEC wineries from sheetsu
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
@@ -293,15 +294,16 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 wineApp.updateWineryList = function(lat, lng) {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		// console.log(resp);
+		console.log(resp);
 
 	}).then(function(wineryData) {
+		console.log(wineryData);
 		//store winery object into global variable
-		wineryList = wineryData;
+		resp = wineryData;
 		//"for each" function to obtain data for every individual winery object
 		wineryList.forEach(function(wineryList){
 			//store individual values for each winery for lat/lon position + additional map display info 
-			wineApp.updateWineryList.push({
+			wineApp.updateWineryLocation.push({
 				lat: resp["Lat"], 
 				lng: resp["Lng"],
 				name: resp["Winery Name"],
