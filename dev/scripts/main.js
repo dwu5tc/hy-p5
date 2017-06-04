@@ -292,7 +292,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 wineApp.updateWineryList = function(lat, lng) {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		console.log(resp);
+		// console.log(resp);
 	}).then(function(wineryData) {
 		//store winery object into global variable
 		wineryList = wineryData;
@@ -349,23 +349,21 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
-<<<<<<< HEAD
+
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		console.log(resp);
-		console.log('listbefore', wineApp.wineryList);
+		// console.log(resp);
 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
 			var temp = {
 				name: n,
 				lat: resp["Lat"],
-				lng: resp["Lon"],
+				lng: resp["Lng"],
 				number: resp["Phone"],
 				url: resp["Website"]
 			}
 			return temp;
 		});		
-		console.log('listafter', wineApp.wineryList);
 		for (var i = 0; i < wineApp.wineListIndex; i++) {
 			wineApp.appendItem(wineApp.wineList[i]);
 		}
