@@ -42,7 +42,7 @@ wineApp.typeItOut = function(string) {
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
 		console.log(wineApp.headerIndex);
-	}, 500);
+	}, 1);
 }
 
 // this will get the list of PEC wineries from sheetsu
