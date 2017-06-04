@@ -8,8 +8,8 @@ wineApp.init = function(){
 	wineApp.smoothScroll();
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
-	wineApp.addSelectionListener();
-	wineApp.toggleSelectionsListener();
+	wineApp.addWineSelectionListener();
+	wineApp.addSelectionFilterListener();
 	// $("#mapContainer").toggleClass("show");
 	// wineApp.myMap();
 }
@@ -73,7 +73,7 @@ wineApp.getAllWines = function(n) {
 			for (var i = 0; i < wineApp.wineListIndex; i++) {
 				wineApp.appendItem(wineApp.wineList[i]);
 			}
-      wineApp.updateWineryList();
+			wineApp.updateWineryList();
 			return;
 		}
 	});
@@ -190,7 +190,7 @@ wineApp.addFilterListener = function() {
 
 
 //This is for when the wine is "selected"
-wineApp.addSelectionListener = function() {
+wineApp.addWineSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
 		console.log("SELECTEDYOOOO");
 		$(this).find("i").toggleClass("hidden");
@@ -204,26 +204,10 @@ wineApp.addSelectionListener = function() {
 }
 
 
-wineApp.toggleSelectionsListener = function(){
+wineApp.addSelectionFilterListener = function(){
 	$(".select-filter").on("click", function(){
 		$(this).toggleClass("select-filter--selected");
 		wineApp.refreshInventory();
-		// if ($(this).hasClass("select-filter--selected")) {
-		// 	var wines = $(".wine-item");
-		// 	console.log(wines);
-		// 	for (var i = 0; i < wines.length; i = i + 1) {
-		// 		if (!(wineApp.selections.includes(wines[i]))) {
-		// 			console.log(i);
-		// 			wineApp.hide(wines[i]);
-		// 		}
-		// 	}
-		// }
-		// else {
-		// 	$(".wine-item").css("display", "block");
-		// 	setTimeout(function() {
-		// 		$(".wine-item").css("transform", "scale(1)");
-		// 	}, 300);
-		// }
 	});
 }
 
