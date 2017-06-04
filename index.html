@@ -3,23 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 	CSS Dev File -->
+	<!-- 	CSS Dev File -->
 	<link rel="stylesheet" href="public/styles/style.css"/>
-<!-- 	Google Fonts -->
+	<!-- 	Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display" rel="stylesheet">
-<!-- 	Leaflet JS CDN -->
+  	<!-- ANIMATE CSS -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<!-- 	Leaflet JS CDN -->
 	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
    	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
    	crossorigin=""/>
-<!--    	Mapbox CDN  -->
+	<!--    	Mapbox CDN  -->
    	<script src='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.36.0/mapbox-gl.css' rel='stylesheet' />
-<!--    	Favicon -->
+	<!--    	Favicon -->
   	<link rel="shortcut icon" href="images/grapeFavi.png" type="image/x-icon" />
-	<title>Wine it Up!</title>
+  	<!-- Font Awesome -->
 	<script src="https://use.fontawesome.com/7d84edbcfa.js"></script>
+	<title>Wine it Up!</title>
 </head>
 <body>
+	
+	<!-- START OF HEADER -->
+
 	<header>
 		<nav class="nav-bar clearfix">
 			<div class="nav-bar__left">
@@ -37,46 +43,52 @@
 			</div>
 		</nav>
 		<div class="hero">
-			<!-- <span class="type-it"> -->
-				<h1>Wine It Up</h1>
-				<h2>Wines of Prince Edward County</h2>
-			<!-- </span> -->
-			<div class="hero__explore">
-				<button class="wines_smoothScroll"><span>Explore Wines</span></button>
-				<button class="about_smoothScroll"><span>About Us</span></button>
+			<h1>Wine It Up</h1>
+			<h2>Wines of Prince Edward County</h2>
+			<div class="hero__explore clearfix">
+				<button class="wines_smoothScroll">Explore Wines</button>
+				<button class="about_smoothScroll">About Us</button>
 			</div>
 		</div>
 	</header>
-	<main>
-		<main> 
-			<section class="about">
-				<div class="section-title">
-					<h2>About Us</h2>
+	
+	<!-- END OF HEADER -->
+
+	<!-- START OF MAIN SECTION -->
+
+	<main> 
+		<section class="about">
+			<div class="section-title">
+				<h2>About Us</h2>
+			</div>
+			<div class="about-left clearfix">
+				<div class="about-left__map">
+					<img src="images/PrinceEdwardCountyMap1885.bmp" alt="This is a map of Prince Edward County from 1885.">
 				</div>
-				<div class="about-left clearfix">
-					<div class="about-left__map">
-						<img src="images/PrinceEdwardCountyMap1885.bmp" alt="This is a map of Prince Edward County from 1885.">
-					</div>
-					<div class="about-right">
-						<p>Welcome to Prince Edward County, a Designated Viticultural Area in Ontario with close to 40 wineries and new ones popping up every year. Our winemakers are true pioneers – tenacious, innovative and passionate.</p>
+				<div class="about-right">
+					<p>Welcome to Prince Edward County, a Designated Viticultural Area in Ontario with close to 40 wineries and new ones popping up every year. Our winemakers are true pioneers – tenacious, innovative and passionate.</p>
 
-						<p>Our winemakers are serious about wine, but the tasting experience in Prince Edward County is refreshingly unpretentious. Sip award-winning wines quietly looking out over acres of vineyards, or enjoy the hustle and bustle of a crowded patio.</p>
+					<p>Our winemakers are serious about wine, but the tasting experience in Prince Edward County is refreshingly unpretentious. Sip award-winning wines quietly looking out over acres of vineyards, or enjoy the hustle and bustle of a crowded patio.</p>
 
-						<p>Prince Edward County has a long and rich agricultural history. Our winemakers are carrying on that tradition today with g	rapes being their crop. They’re one-part farmer, one-part mad scientist and one-part chef. They work tirelessly year round to manage their vineyards, harvest their grapes, and work their magic in the cellar to produce high-quality wines.</p>
+					<p>Prince Edward County has a long and rich agricultural history. Our winemakers are carrying on that tradition today with g	rapes being their crop. They’re one-part farmer, one-part mad scientist and one-part chef. They work tirelessly year round to manage their vineyards, harvest their grapes, and work their magic in the cellar to produce high-quality wines.</p>
 
-						<button class="wines_smoothScroll">Go to Wines</button>
+					<button class="wines_smoothScroll">Go to Wines</button>
 
-						<p>Being on the north shore of Lake Ontario, the lake effect moderates the temperature throughout the year and shields us from early fall frosts, allowing the fruit to hang on the vine a little longer, developing more concentrated flavours. However, we face a big challenge every winter when temperatures can dip below -24C — the point at which buds on the vines will die.</p>
+					<p>Being on the north shore of Lake Ontario, the lake effect moderates the temperature throughout the year and shields us from early fall frosts, allowing the fruit to hang on the vine a little longer, developing more concentrated flavours. However, we face a big challenge every winter when temperatures can dip below -24C — the point at which buds on the vines will die.</p>
 
-						<p>To protect them, we “hill up” the vines after harvesting the grapes in the fall and bury them under the soil, which provides enough insulation to keep them alive over the winter. In the spring, we undertake the mammoth task of de-hilling the vines — removing the soil and uncovering the vines. It’s a delicate task that must be done by hand to prevent damage.</p>
+					<p>To protect them, we “hill up” the vines after harvesting the grapes in the fall and bury them under the soil, which provides enough insulation to keep them alive over the winter. In the spring, we undertake the mammoth task of de-hilling the vines — removing the soil and uncovering the vines. It’s a delicate task that must be done by hand to prevent damage.</p>
 
-						<p>No other wine region in Canada does this, but we think the extra effort is worth it.</p>
-<!-- 						About Content Source: https://www.princeedwardcountywine.ca/about/ -->
-					</div>
+					<p>No other wine region in Canada does this, but we think the extra effort is worth it.</p>
+				    <!-- About Content Source: https://www.princeedwardcountywine.ca/about/ -->
 				</div>
-			</section> <!-- about -->
-			<section class="wines keyline clearfix">
-				<div class="wrapper">
+			</div>
+		</section>
+		<!-- END OF ABOUT SECTION -->
+
+		<!-- BEGINING OF WINES SECTION -->
+		<section class="wines keyline clearfix">
+			<div class="wrapper">
+				<div class="titleArea">
 					<div class="section-title">
 						<h2>Wines</h2>
 					</div>
@@ -86,41 +98,47 @@
 							<button class="filter all filter--selected">All</button>
 							<button class="filter reds">Reds</button>
 							<button class="filter whites">Whites</button>
-							<button class="filter other">Other</button>
+							<button class="filter other">Other</button>	
 							<button class="select-filter">Selected</button>
 						</div>	
 					</div>
-					<div class="wines-inventory clearfix">
-					</div> <!-- wines-inventory -->
-					<button class="collection_smoothScroll">Explore Your Selections</button>
-				</div> <!-- wrapper -->
-			</section> <!-- wines --> 
-			<section class="collection keyline">
-				<div class="wrapper">
-					<div class="section-title">
-						<h2>Collection</h2>
-					</div>
-					<div class="wine-choice">
-						
-					</div>
-				<!-- Map Container -->
-				 	<div id="mapContainer">
-					</div>	
 				</div>
-			<!--  Map Container Close -->
-			</section> <!-- collection -->
-	</main>
+				<div class="wines-inventory clearfix"></div>
+				<button class="collection_smoothScroll">Explore Your Selections</button>
+			</div>
+		</section>
+		<!-- END OF WINES SECTION --> 
+		
+		<section class="collection keyline">
+			<div class="wrapper">
+				<div class="section-title">
+					<h2>Collection</h2>
+				</div>
+				<div class="wine-choice"></div>
+				<!-- Map Container -->
+			 	<div id="mapContainer"></div>	
+				<!-- WHERE THE WINES ARE STORED -->
+			</div>
+		</section>
+	
+	<!-- END OF COLLECTIONS SECTION -->
+	<!-- END OF MAIN SECTION OF PAGE -->
+	
+	<!-- FOOTER SECTION -->
+	
 	<footer>
 		<div class="wrapper">
 			<p> &copy; 2017 Alex Clarke, Dean Wu, and Nahrin Jalal</p>
 		</div>
 	</footer>
-<!-- 	jQuery CDN -->
+
+	<!-- END OF FOOTER SECTION -->
+
+
+	<!-- BEGINING OF SCRIPT CALLS -->
+	<!-- 	jQuery CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<!-- 	TypeIt JS CDN -->
-	<script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/4.4.0/typeit.min.js"></script>
-<!-- 	Leaflet JS CDN -->
+	<!-- 	Leaflet JS CDN -->
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
    integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
    crossorigin=""></script>
