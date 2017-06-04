@@ -68,7 +68,7 @@ ul.nav-bar__right__links{
 	h2{
 		font-family: $headingFont;
 		font-size: 30px;
-		margin-bottom: 15px;
+		margin-bottom: 25px;
 		color: white;
 	}
 	button{
@@ -86,4 +86,39 @@ ul.nav-bar__right__links{
 	.wines_smoothScroll{
 		margin-right: 20px;
 	}
+}
+
+//RESPONSIVE STUFF
+
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+	.hero{
+		h1{
+			font-size: 90px;
+		}
+		h2{
+			font-size: 28px;
+		}
+		button{
+			display: block;
+			margin-right: 0;
+			margin: 0 auto;
+		}
+		.wines_smoothScroll{
+			margin-right: 0;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+	}
+	.nav-bar__right__links li{
+		font-size: 14px;
+	}
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
 }

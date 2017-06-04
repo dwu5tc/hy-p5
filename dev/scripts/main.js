@@ -31,7 +31,6 @@ wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Win
 //This is for how many get appended at first.
 wineApp.wineListIndex = 9;
 
-
 // this will get the list of PEC wineries from sheetsu
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
@@ -216,13 +215,8 @@ wineApp.addSelectionFilterListener = function(){
 wineApp.selectionFilterListener = function(){
 
 }
-//This is to apply the selected wines to the collection section!
-// wineApp.appendCollection = function(){
-// 	$(".wines-inventory").on("click", ".wine-item", function(){
-// 		$('.wine-choice').append(this);
-// 		$('.wine-choice').removeClass('wine-item--selected');	
-// 	});
-// }
+
+
 
 //This is to append more wine choices to our Wine area. Refreshes the inventory.
 wineApp.refreshInventory = function() {
@@ -267,12 +261,42 @@ wineApp.addUpdateOnScrollListener = function() { // issue if the user has filter
 	});
 }
 
-
+//This is the leaflet map
 wineApp.mymap = L.map('mapContainer', { zoomControl: false, scrollWheelZoom: false }).setView([44.0003, -77.2505], 11);
 
+//The leaflet map API
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW15dHNjaHUiLCJhIjoiY2ozNG5zNmJnMDFrczJ3cDY1ZmI3NXNvMiJ9.xO_RFTtsZqDPHl2EW8d0IQ', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 }).addTo(wineApp.mymap);
+
+
+
+// -------------- To get winery markers on page ------------------
+
+// Pass in latitute and longitute of each winery 
+wineApp.updateWineryList = function(lat, lng) {
+	$.when(wineApp.getPEC())
+	.then(function(resp) {
+		// console.log(resp);
+
+	}).then(function(wineryData) {
+		//store winery object into global variable
+		wineryList = wineryData;
+		//"for each" function to obtain data for every individual winery object
+		wineryList.forEach(function(wineryList){
+			//store individual values for each winery for lat/lon position + additional map display info 
+			wineApp.updateWineryList.push({
+				lat: resp["Lat"], 
+				lng: resp["Lng"],
+				name: resp["Winery Name"],
+				url: resp["URL"],
+				phone: resp["Phone"]
+			});
+		});
+		//call function to place markers (wine glasses) on map at winery coordinates
+		wineApp.placeMapMarkers();
+	});
+}
 
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
@@ -287,8 +311,8 @@ wineApp.locationIcon = L.icon({
 wineApp.placeMapMarkers = function(){
 	//pulling latitude and longitude for each winery in array
 	wineApp.wineryArray.forEach(function(marker) {
-		var lat = marker.lat;
-		var lon = marker.lon;
+		var lat = marker.Lat;
+		var lng = marker.Lng;
 		//Leaflet method -> add custom marker to map at lat/longs pulled from above
 		L.marker([lat, lon], {icon: wineApp.locationIcon})
 		//Leaflet  method to create "pop up" when marker clicked
@@ -301,8 +325,8 @@ wineApp.placeMapMarkers = function(){
 				<div class="popup-text">
 					<a href="${marker.url}" target="_blank" class="popup-text_content">
 							<h2>${marker.name}</h2>
-							<p class="wineryWebsite"> Website: ${marker.Website}</p>
-							<p> Phone: ${marker.Phone}</p>
+							<p class="wineryUrl"> Website: ${marker.URL}</p>
+							<p class="wineryPhone"> Phone: ${marker.Phone}</p>
 					</a>
 				</div>
 			</div>`
@@ -311,39 +335,36 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
-wineApp.updateWineryList = function() {
-	$.when(wineApp.getPEC())
-	.then(function(resp) {
-		console.log(resp);
-		console.log('listbefore', wineApp.wineryList);
-		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-			var temp = {
-				name: n,
-				lat: resp["Lat"],
-				lng: resp["Lon"],
-				number: resp["Phone"],
-				url: resp["Website"]
-			}
-			return temp;
-		});		
-		console.log('listafter', wineApp.wineryList);
-		for (var i = 0; i < wineApp.wineListIndex; i++) {
-			wineApp.displayWine(wineApp.wineList[i]);
-		}
-		return;
-	});
-}
+
+// wineApp.updateWineryList = function() {
+// 	$.when(wineApp.getPEC())
+// 	.then(function(resp) {
+// 		console.log(resp);
+// 		console.log('listbefore', wineApp.wineryList);
+// 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
+// 			var temp = {
+// 				name: n,
+// 				lat: resp["Lat"],
+// 				lng: resp["Lon"],
+// 				number: resp["Phone"],
+// 				url: resp["Website"]
+// 			}
+// 			return temp;
+// 		});		
+// 		console.log('listafter', wineApp.wineryList);
+// 		for (var i = 0; i < wineApp.wineListIndex; i++) {
+// 			wineApp.displayWine(wineApp.wineList[i]);
+// 		}
+// 		return;
+// 	});
+// }
+
+
 
 //Document Ready!!
 $(function(){
 	wineApp.init();
-	$('.type-it').typeIt({
-     strings: ["Wine it up!", "Wines of Prince Edward County"],
-     speed: 150,
-     breakLines: true,
-     autoStart: false
 });
-})
 
 
 
