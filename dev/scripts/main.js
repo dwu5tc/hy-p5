@@ -302,7 +302,6 @@ wineApp.updateWineryList = function() {
     });
 }
 
-
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
 	iconUrl: 'assets/wineMarker.svg', // Wine glass image for the map marker
