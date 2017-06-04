@@ -12,7 +12,6 @@ wineApp.init = function(){
 	wineApp.addSelectionFilterListener();
 	wineApp.typeItOut(wineApp.headerString);
 	
-	// $("#mapContainer").toggleClass("show");
 	// wineApp.myMap();
 	// wineApp.updateWineryList();
 	wineApp.placeMapMarkers();
@@ -369,9 +368,6 @@ wineApp.placeMapMarkers = function(){
 $(function(){
 	wineApp.init();
 });
-
-
-
 
 
 
