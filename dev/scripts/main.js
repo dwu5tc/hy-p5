@@ -48,6 +48,7 @@ wineApp.typeItOut = function(string) {
 	}, 350);
 }
 
+
 // this will get the list of PEC wineries from sheetsu
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
@@ -292,12 +293,37 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 // -------------- To get winery markers on page ------------------
 
 // Pass in latitute and longitute of each winery 
+
 wineApp.updateWineryList = function() {
     $.when(wineApp.getPEC())
     .then(function(resp) {
         wineApp.wineryList = resp;
         // console.log(wineApp.wineryList);
     });
+
+wineApp.updateWineryList = function(lat, lng) {
+	$.when(wineApp.getPEC())
+	.then(function(resp) {
+		// console.log(resp);
+	}).then(function(wineryData) {
+		console.log(wineryData);
+		//store winery object into global variable
+		resp = wineryData;
+		//"for each" function to obtain data for every individual winery object
+		wineryList.forEach(function(wineryList){
+			//store individual values for each winery for lat/lon position + additional map display info 
+			wineApp.updateWineryLocation.push({
+				lat: resp["Lat"], 
+				lng: resp["Lng"],
+				name: resp["Winery Name"],
+				url: resp["URL"],
+				phone: resp["Phone"]
+			});
+		});
+		//call function to place markers (wine glasses) on map at winery coordinates
+		wineApp.placeMapMarkers();
+	});
+>>>>>>> bc4a8840a423b14069a7a7a3da04f6d14f1023af
 }
 
 
@@ -339,6 +365,7 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
+<<<<<<< HEAD
 
 // wineApp.updateWineryList = function() {
 // 	$.when(wineApp.getPEC())
@@ -360,6 +387,28 @@ wineApp.placeMapMarkers = function(){
 // 		return;
 // 	});
 // }
+=======
+wineApp.updateWineryList = function() {
+	$.when(wineApp.getPEC())
+	.then(function(resp) {
+		// console.log(resp);
+		wineApp.wineryList = wineApp.wineryList.map(function(n) {
+			var temp = {
+				name: n,
+				lat: resp["Lat"],
+				lng: resp["Lng"],
+				number: resp["Phone"],
+				url: resp["Website"]
+			}
+			return temp;
+		});		
+		for (var i = 0; i < wineApp.wineListIndex; i++) {
+			wineApp.appendItem(wineApp.wineList[i]);
+		}
+		return;
+	});
+}
+>>>>>>> bc4a8840a423b14069a7a7a3da04f6d14f1023af
 
 // wineApp.updateWineryList = function() {
 // 	$.when(wineApp.getPEC())
