@@ -323,7 +323,6 @@ wineApp.updateWineryList = function(lat, lng) {
 		//call function to place markers (wine glasses) on map at winery coordinates
 		wineApp.placeMapMarkers();
 	});
->>>>>>> bc4a8840a423b14069a7a7a3da04f6d14f1023af
 }
 
 
@@ -365,78 +364,14 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
-<<<<<<< HEAD
-
-// wineApp.updateWineryList = function() {
-// 	$.when(wineApp.getPEC())
-// 	.then(function(resp) {
-// 		// console.log(resp);
-// 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-// 			var temp = {
-// 				name: n,
-// 				lat: resp["Lat"],
-// 				lng: resp["Lng"],
-// 				number: resp["Phone"],
-// 				url: resp["Website"]
-// 			}
-// 			return temp;
-// 		});		
-// 		for (var i = 0; i < wineApp.wineListIndex; i++) {
-// 			wineApp.appendItem(wineApp.wineList[i]);
-// 		}
-// 		return;
-// 	});
-// }
-=======
-wineApp.updateWineryList = function() {
-	$.when(wineApp.getPEC())
-	.then(function(resp) {
-		// console.log(resp);
-		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-			var temp = {
-				name: n,
-				lat: resp["Lat"],
-				lng: resp["Lng"],
-				number: resp["Phone"],
-				url: resp["Website"]
-			}
-			return temp;
-		});		
-		for (var i = 0; i < wineApp.wineListIndex; i++) {
-			wineApp.appendItem(wineApp.wineList[i]);
-		}
-		return;
-	});
-}
->>>>>>> bc4a8840a423b14069a7a7a3da04f6d14f1023af
-
-// wineApp.updateWineryList = function() {
-// 	$.when(wineApp.getPEC())
-// 	.then(function(resp) {
-// 		console.log(resp);
-// 		console.log('listbefore', wineApp.wineryList);
-// 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-// 			var temp = {
-// 				name: n,
-// 				lat: resp["Lat"],
-// 				lng: resp["Lon"],
-// 				number: resp["Phone"],
-// 				url: resp["Website"]
-// 			}
-// 			return temp;
-// 		});		
-// 		console.log('listafter', wineApp.wineryList);
-// 		for (var i = 0; i < wineApp.wineListIndex; i++) {
-// 			wineApp.displayWine(wineApp.wineList[i]);
-// 		}
-// 		return;
-// 	});
-// }
 
 //Document Ready!!
 $(function(){
 	wineApp.init();
 });
+
+
+
 
 
 
