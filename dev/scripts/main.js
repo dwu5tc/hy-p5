@@ -12,9 +12,8 @@ wineApp.init = function(){
 	wineApp.addSelectionFilterListener();
 	wineApp.typeItOut(wineApp.headerString);
 	
-	// $("#mapContainer").toggleClass("show");
-	// wineApp.myMap();
-	// wineApp.updateWineryList();
+	wineApp.myMap();
+	wineApp.updateWineryList();
 	wineApp.placeMapMarkers();
 }
 
@@ -123,6 +122,7 @@ wineApp.appendItem = function(item) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
 						<i class="fa fa-check hidden" aria-hidden="true"></i>
 						<figure class="wine-item__img">
+							<img src="${item.image_url}" alt="">
 							<figcation class="wine-item__info">
 								<div class="p-info xy-center">
 									<p>${item.producer_name}</p>
@@ -210,7 +210,7 @@ wineApp.addFilterListener = function() {
 //This is for when the wine is "selected"
 wineApp.addWineSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
-		console.log("SELECTEDYOOOO");
+		// console.log("SELECTEDYOOOO");
 		$(this).toggleClass("wine-item--selected");
 		$(this).find("i").toggleClass("hidden");
 		if ($(this).hasClass("wine-item--selected")) {
@@ -363,15 +363,13 @@ wineApp.placeMapMarkers = function(){
 		.addTo(wineApp.mymap);
 	});	
 }
+}
 
 
 //Document Ready!!
 $(function(){
 	wineApp.init();
 });
-
-
-
 
 
 
