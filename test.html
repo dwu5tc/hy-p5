@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>asd</h1>
+	<h2>sdgjk</h2>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		
+	<script type="text/javascript">
+		var headerString = "Wine";
+		var headerIndex = 0;
+
+		typeItOut = function(string) {
+
+			setInterval(function() {
+				$("h2").html(headerIndex);
+		  	if (headerIndex == headerString.length) {
+					headerIndex *= -1;
+		    }
+		  	$("h1").html(string.substring(0, Math.abs(headerIndex))+"_");
+		    headerIndex++;
+		    
+		  }, 1000);
+		}
+
+		typeItOut(headerString);
+	</script>
+</body>
+</html>

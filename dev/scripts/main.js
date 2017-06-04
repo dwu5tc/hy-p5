@@ -8,8 +8,9 @@ wineApp.init = function(){
 	wineApp.smoothScroll();
 	wineApp.addFilterListener();
 	wineApp.addUpdateOnScrollListener();
-	wineApp.addSelectionListener();
-	wineApp.toggleSelectionsListener();
+	wineApp.addWineSelectionListener();
+	wineApp.addSelectionFilterListener();
+	wineApp.typeItOut(wineApp.headerString);
 	// $("#mapContainer").toggleClass("show");
 	// wineApp.myMap();
 }
@@ -30,6 +31,19 @@ wineApp.selections = [];
 wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 //This is for how many get appended at first.
 wineApp.wineListIndex = 9;
+wineApp.headerString = "Wine it Up";
+wineApp.headerIndex = 0;
+
+wineApp.typeItOut = function(string) {
+	setInterval(function() {
+		if (wineApp.headerIndex == wineApp.headerString.length) {
+			wineApp.headerIndex *= -1;
+		}
+		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
+		wineApp.headerIndex++;
+		console.log(wineApp.headerIndex);
+	}, 500);
+}
 
 
 // this will get the list of PEC wineries from sheetsu
@@ -74,7 +88,7 @@ wineApp.getAllWines = function(n) {
 			for (var i = 0; i < wineApp.wineListIndex; i++) {
 				wineApp.appendItem(wineApp.wineList[i]);
 			}
-      wineApp.updateWineryList();
+			wineApp.updateWineryList();
 			return;
 		}
 	});
@@ -191,9 +205,10 @@ wineApp.addFilterListener = function() {
 
 
 //This is for when the wine is "selected"
-wineApp.addSelectionListener = function() {
+wineApp.addWineSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
 		console.log("SELECTEDYOOOO");
+		$(this).toggleClass("wine-item--selected");
 		$(this).find("i").toggleClass("hidden");
 		if ($(this).hasClass("wine-item--selected")) {
 			wineApp.selections.push(this);
@@ -205,26 +220,10 @@ wineApp.addSelectionListener = function() {
 }
 
 
-wineApp.toggleSelectionsListener = function(){
+wineApp.addSelectionFilterListener = function(){
 	$(".select-filter").on("click", function(){
 		$(this).toggleClass("select-filter--selected");
 		wineApp.refreshInventory();
-		// if ($(this).hasClass("select-filter--selected")) {
-		// 	var wines = $(".wine-item");
-		// 	console.log(wines);
-		// 	for (var i = 0; i < wines.length; i = i + 1) {
-		// 		if (!(wineApp.selections.includes(wines[i]))) {
-		// 			console.log(i);
-		// 			wineApp.hide(wines[i]);
-		// 		}
-		// 	}
-		// }
-		// else {
-		// 	$(".wine-item").css("display", "block");
-		// 	setTimeout(function() {
-		// 		$(".wine-item").css("transform", "scale(1)");
-		// 	}, 300);
-		// }
 	});
 }
 
@@ -294,8 +293,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 wineApp.updateWineryList = function(lat, lng) {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		console.log(resp);
-
+		// console.log(resp);
 	}).then(function(wineryData) {
 		console.log(wineryData);
 		//store winery object into global variable
@@ -332,7 +330,7 @@ wineApp.placeMapMarkers = function(){
 		var lat = marker.Lat;
 		var lng = marker.Lng;
 		//Leaflet method -> add custom marker to map at lat/longs pulled from above
-		L.marker([lat, lon], {icon: wineApp.locationIcon})
+		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
 		//Leaflet  method to create "pop up" when marker clicked
 		.bindPopup(
 		//template literal content for marker popups
@@ -353,6 +351,28 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
+wineApp.updateWineryList = function() {
+	$.when(wineApp.getPEC())
+	.then(function(resp) {
+		console.log(resp);
+		console.log('listbefore', wineApp.wineryList);
+		wineApp.wineryList = wineApp.wineryList.map(function(n) {
+			var temp = {
+				name: n,
+				lat: resp["Lat"],
+				lng: resp["Lon"],
+				number: resp["Phone"],
+				url: resp["Website"]
+			}
+			return temp;
+		});		
+		console.log('listafter', wineApp.wineryList);
+		for (var i = 0; i < wineApp.wineListIndex; i++) {
+			wineApp.appendItem(wineApp.wineList[i]);
+		}
+		return;
+	});
+}
 
 // wineApp.updateWineryList = function() {
 // 	$.when(wineApp.getPEC())
@@ -376,8 +396,6 @@ wineApp.placeMapMarkers = function(){
 // 		return;
 // 	});
 // }
-
-
 
 //Document Ready!!
 $(function(){
