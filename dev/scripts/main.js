@@ -15,7 +15,7 @@ wineApp.init = function(){
 	
 	// wineApp.myMap();
 	// wineApp.updateWineryList();
-	wineApp.placeMapMarkers();
+	// wineApp.placeMapMarkers();
 }
 
 //Variables for the KEY!!!
@@ -291,8 +291,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 }).addTo(wineApp.mymap);
 
 
-
-
 // -------------- To get winery markers on page ------------------
 
 // Pass in latitute and longitute of each winery 
@@ -302,6 +300,7 @@ wineApp.updateWineryList = function() {
     .then(function(resp) {
         wineApp.wineryList = resp;
         // console.log(wineApp.wineryList);
+	    wineApp.placeMapMarkers(resp);
     });
 }
 
@@ -312,7 +311,6 @@ wineApp.locationIcon = L.icon({
 	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
-
 
 
 // // Function to place markers for wineries on map
