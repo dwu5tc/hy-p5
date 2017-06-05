@@ -53,7 +53,7 @@ wineApp.typeItOut = function(string) {
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		resp = resp.map(n => n["Winery Name"]);
+		resp = resp.map(n => n["Winery"]);
 		wineApp.wineryList.push(...resp);
 		wineApp.getAllWines(1); // beginning of chained ajax calls
 	});
@@ -322,70 +322,32 @@ wineApp.updateWineryList = function() {
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
 	iconUrl: 'images/wineMarker.svg', // Wine glass image for the map marker
-	iconSize: [70, 70], // dimensions of the icon
+	iconSize: [40, 40], // dimensions of the icon
 	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
-
-
-// // Function to place markers for wineries on map
-wineApp.placeMapMarkers = function(){
-	//pulling latitude and longitude for each winery in array
-	wineApp.wineryArray.forEach(function(marker) {
-		var lat = marker.Lat;
-		var lng = marker.Lng;
-		//Leaflet method -> add custom marker to map at lat/longs pulled from above
-		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
-		//Leaflet  method to create "pop up" when marker clicked
-		.bindPopup(
-		//template literal content for marker popups
-			`<div class="winery-popup">
-				<a href="${marker.url}" class="image-popup-link" target="_blank">
-					<img src="${marker.photo}" class="image-popup">
-				</a>
-				<div class="popup-text">
-					<a href="${marker.url}" target="_blank" class="popup-text_content">
-							<h2>${marker.name}</h2>
-							<p class="wineryUrl"> Website: ${marker.URL}</p>
-							<p class="wineryPhone"> Phone: ${marker.Phone}</p>
-					</a>
-				</div>
-			</div>`
-		)
-		.addTo(wineApp.mymap);
-	});	
-}
-
-wineApp.updateWineryList = function() {
-    $.when(wineApp.getPEC())
-    .then(function(resp) {
-        wineApp.wineryList = resp;
-	    wineApp.placeMapMarkers(resp);
-    });
-}
 
 
 
 wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
-          <a href="${marker.url}" class="image-popup-link" target="_blank">
-            <img src="${marker.photo}" target="_blank" class="image-popup">
+          <a href="${marker.URL}" class="image-popup-link" target="_blank">
+           
           </a>
           <div class="popup-text">
-            <a href="${marker.url}" target="_blank" class="popup-text_content">
-              <h2>${marker.name}</h2>
+            <a href="${marker.URL}" target="_blank" class="popup-text_content">
+              <h2>${marker.Winery}</h2>
               <p class="wineryUrl"> Website: ${marker.URL}</p>
-              <p class="wineryPhone"> Phone: ${marker.Phone}</p>
             </a>
           </div>
         </div>`
   }
 
-resp.forEach(function(marker) {
+  resp.forEach(function(marker) {
     var Lat = parseFloat(marker.Lat);
     var Lng = parseFloat(marker.Lng);
-    console.log(Lng)
+    console.log(marker)
     var wineMarker = L.marker([Lat, Lng], {
       icon: wineApp.locationIcon
    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
@@ -396,5 +358,3 @@ resp.forEach(function(marker) {
 $(function(){
 	wineApp.init();
 });
-
-
