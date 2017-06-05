@@ -45,10 +45,7 @@ wineApp.typeItOut = function(string) {
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
 		// console.log(wineApp.headerIndex);
-<<<<<<< HEAD
-=======
 	}, 500);
->>>>>>> 6017aad21590d1df13d3ccc2e72928cce34e7db0
 	}, 350);
 }
 
@@ -294,11 +291,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 }).addTo(wineApp.mymap);
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6017aad21590d1df13d3ccc2e72928cce34e7db0
-
 // -------------- To get winery markers on page ------------------
 
 // Pass in latitute and longitute of each winery 
@@ -319,35 +311,6 @@ wineApp.locationIcon = L.icon({
 	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
-
-<<<<<<< HEAD
-wineApp.placeMapMarkers = function(resp) {
-  function buildPopup(marker) {
-    return `<div class="winery-popup">
-          <a href="${marker.url}" class="image-popup-link" target="_blank">
-            <img src="${marker.photo}" class="image-popup">
-          </a>
-          <div class="popup-text">
-            <a href="${marker.url}" target="_blank" class="popup-text_content">
-              <h2>${marker.name}</h2>
-              <p class="wineryUrl"> Website: ${marker.URL}</p>
-              <p class="wineryPhone"> Phone: ${marker.Phone}</p>
-            </a>
-          </div>
-        </div>`
-  }
-
-  resp.forEach(function(marker) {
-    var Lat = parseInt(marker.Lat);
-    var Lng = parseInt(marker.Lng);
-    console.log(Lat)
-    var wineMarker = L.marker([Lat, Lng], {
-      icon: wineApp.locationIcon
-    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
-  });
-}
-
-=======
 
 
 // // Function to place markers for wineries on map
@@ -414,7 +377,6 @@ wineApp.placeMapMarkers = function() {
 }
 
 
->>>>>>> 6017aad21590d1df13d3ccc2e72928cce34e7db0
 //Document Ready!!
 $(function(){
 	wineApp.init();
