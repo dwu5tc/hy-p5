@@ -93,9 +93,15 @@ section.about{
 			text-align: center;
 		}
 	}
+	section.about{
+		p{
+			font-size: 14px;
+		}
+	}
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
+
 }
 

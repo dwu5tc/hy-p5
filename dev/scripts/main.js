@@ -356,7 +356,6 @@ wineApp.placeMapMarkers = function(resp) {
 //Document Ready!!
 $(function(){
 	wineApp.init();
-});
 
 	$(function(){
 		// MOBILE NAV THING
@@ -371,5 +370,7 @@ $(function(){
 			} else{
 				$('.nav-bar__right__links').css('display', 'none')
 			}
-		});
+		
+	});
 });
+
