@@ -3,6 +3,18 @@
 	position: relative;
 	animation-duration: 1s;
 	background-color: $darkPlum;
+	margin-bottom: 2em;
+}
+
+#mapContainer {
+	body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100vh;
+    width: 100vw;
+}
 }
 
 // Leaflet map loading Styles
@@ -90,8 +102,14 @@
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
-	.loading .loading-icon div img {
-		width: 100px;
+	body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100vh;
+    width: 100vw;
+}
 	}
 }
 
