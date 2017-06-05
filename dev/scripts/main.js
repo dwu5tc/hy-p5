@@ -1,5 +1,6 @@
 //intial namespace
 var wineApp = {};
+wineApp.wineryArray = []; //<----array to eventually hold restaurant longitude/latitude
 
 //wineApp init
 wineApp.init = function(){
@@ -11,8 +12,10 @@ wineApp.init = function(){
 	wineApp.addWineSelectionListener();
 	wineApp.addSelectionFilterListener();
 	wineApp.typeItOut(wineApp.headerString);
-	// $("#mapContainer").toggleClass("show");
+	
 	// wineApp.myMap();
+	// wineApp.updateWineryList();
+	wineApp.placeMapMarkers();
 }
 
 //Variables for the KEY!!!
@@ -31,7 +34,7 @@ wineApp.selections = [];
 wineApp.currentFilters = ["Red Wine", "White Wine", "Sparkling Wine", "Rosé Wine", "Dessert Wine"];
 //This is for how many get appended at first.
 wineApp.wineListIndex = 9;
-wineApp.headerString = "Wine it Up";
+wineApp.headerString = "Wine it Up!";
 wineApp.headerIndex = 0;
 
 wineApp.typeItOut = function(string) {
@@ -41,9 +44,10 @@ wineApp.typeItOut = function(string) {
 		}
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
-		console.log(wineApp.headerIndex);
-	}, 300);
+		// console.log(wineApp.headerIndex);
+	}, 350);
 }
+
 
 // this will get the list of PEC wineries from sheetsu
 wineApp.getPECList = function() {
@@ -114,6 +118,7 @@ wineApp.getWine = function(pageNum) {
 // Display this info for each wine on the page.
 //Look at that variable baby!
 wineApp.appendItem = function(item) {
+	console.log(item);
 	if (item.image_url != undefined && item.secondary_category != undefined) {
 		var temp = `<div class="wine-item" id="${item.id}" data-type="${item.secondary_category}">
 						<i class="fa fa-check hidden" aria-hidden="true"></i>
@@ -206,7 +211,7 @@ wineApp.addFilterListener = function() {
 //This is for when the wine is "selected"
 wineApp.addWineSelectionListener = function() {
 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
-		console.log("SELECTEDYOOOO");
+		// console.log("SELECTEDYOOOO");
 		$(this).toggleClass("wine-item--selected");
 		$(this).find("i").toggleClass("hidden");
 		if ($(this).hasClass("wine-item--selected")) {
@@ -289,27 +294,13 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 // -------------- To get winery markers on page ------------------
 
 // Pass in latitute and longitute of each winery 
-wineApp.updateWineryList = function(lat, lng) {
-	$.when(wineApp.getPEC())
-	.then(function(resp) {
-		console.log(resp);
-	}).then(function(wineryData) {
-		//store winery object into global variable
-		wineryList = wineryData;
-		//"for each" function to obtain data for every individual winery object
-		wineryList.forEach(function(wineryList){
-			//store individual values for each winery for lat/lon position + additional map display info 
-			wineApp.updateWineryList.push({
-				lat: resp["Lat"], 
-				lng: resp["Lng"],
-				name: resp["Winery Name"],
-				url: resp["URL"],
-				phone: resp["Phone"]
-			});
-		});
-		//call function to place markers (wine glasses) on map at winery coordinates
-		wineApp.placeMapMarkers();
-	});
+
+wineApp.updateWineryList = function() {
+    $.when(wineApp.getPEC())
+    .then(function(resp) {
+        wineApp.wineryList = resp;
+        // console.log(wineApp.wineryList);
+    });
 }
 
 //Wine glass marker for winery locations
@@ -320,34 +311,31 @@ wineApp.locationIcon = L.icon({
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
 
+wineApp.placeMapMarkers = function() {
+  function buildPopup(marker) {
+    return `<div class="winery-popup">
+          <a href="${marker.url}" class="image-popup-link" target="_blank">
+            <img src="${marker.photo}" class="image-popup">
+          </a>
+          <div class="popup-text">
+            <a href="${marker.url}" target="_blank" class="popup-text_content">
+              <h2>${marker.name}</h2>
+              <p class="wineryUrl"> Website: ${marker.URL}</p>
+              <p class="wineryPhone"> Phone: ${marker.Phone}</p>
+            </a>
+          </div>
+        </div>`
+  }
 
-// // Function to place markers for wineries on map
-wineApp.placeMapMarkers = function(){
-	//pulling latitude and longitude for each winery in array
-	wineApp.wineryArray.forEach(function(marker) {
-		var lat = marker.Lat;
-		var lng = marker.Lng;
-		//Leaflet method -> add custom marker to map at lat/longs pulled from above
-		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
-		//Leaflet  method to create "pop up" when marker clicked
-		.bindPopup(
-		//template literal content for marker popups
-			`<div class="winery-popup">
-				<a href="${marker.url}" class="image-popup-link" target="_blank">
-					<img src="${marker.photo}" class="image-popup">
-				</a>
-				<div class="popup-text">
-					<a href="${marker.url}" target="_blank" class="popup-text_content">
-							<h2>${marker.name}</h2>
-							<p class="wineryUrl"> Website: ${marker.URL}</p>
-							<p class="wineryPhone"> Phone: ${marker.Phone}</p>
-					</a>
-				</div>
-			</div>`
-		)
-		.addTo(wineApp.mymap);
-	});	
+  wineApp.wineryList.forEach(function(marker) {
+    var Lat = parseFloat(marker.Lat);
+    var Lng = parseFloat(marker.Lat);
+    var wineMarker = L.marker([Lat, Lng], {
+      icon: wineApp.locationIcon
+    }).bindPopup(buildMarker(marker)).addTo(wineApp.mymap)
+  });
 }
+
 
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
@@ -383,6 +371,5 @@ wineApp.updateWineryList = function() {
 $(function(){
 	wineApp.init();
 });
-
 
 
