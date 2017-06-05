@@ -42,7 +42,7 @@ wineApp.typeItOut = function(string) {
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
 		console.log(wineApp.headerIndex);
-	}, 500);
+	}, 300);
 }
 
 // this will get the list of PEC wineries from sheetsu
@@ -349,27 +349,10 @@ wineApp.placeMapMarkers = function(){
 	});	
 }
 
-<<<<<<< HEAD
 wineApp.updateWineryList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		console.log(resp);
-		console.log('listbefore', wineApp.wineryList);
-		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-			var temp = {
-				name: n,
-				lat: resp["Lat"],
-				lng: resp["Lon"],
-				number: resp["Phone"],
-				url: resp["Website"]
-			}
-			return temp;
-		});		
-		console.log('listafter', wineApp.wineryList);
-		for (var i = 0; i < wineApp.wineListIndex; i++) {
-			wineApp.appendItem(wineApp.wineList[i]);
-		}
-		return;
+		wineApp.wineryList = resp;
 	});
 }
 
