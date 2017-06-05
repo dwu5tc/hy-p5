@@ -45,6 +45,10 @@ wineApp.typeItOut = function(string) {
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
 		// console.log(wineApp.headerIndex);
+<<<<<<< HEAD
+=======
+	}, 500);
+>>>>>>> 6017aad21590d1df13d3ccc2e72928cce34e7db0
 	}, 350);
 }
 
@@ -290,6 +294,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 }).addTo(wineApp.mymap);
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6017aad21590d1df13d3ccc2e72928cce34e7db0
 
 // -------------- To get winery markers on page ------------------
 
@@ -312,6 +320,7 @@ wineApp.locationIcon = L.icon({
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
 
+<<<<<<< HEAD
 wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
@@ -338,6 +347,74 @@ wineApp.placeMapMarkers = function(resp) {
   });
 }
 
+=======
+
+
+// // Function to place markers for wineries on map
+wineApp.placeMapMarkers = function(){
+	//pulling latitude and longitude for each winery in array
+	wineApp.wineryArray.forEach(function(marker) {
+		var lat = marker.Lat;
+		var lng = marker.Lng;
+		//Leaflet method -> add custom marker to map at lat/longs pulled from above
+		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
+		//Leaflet  method to create "pop up" when marker clicked
+		.bindPopup(
+		//template literal content for marker popups
+			`<div class="winery-popup">
+				<a href="${marker.url}" class="image-popup-link" target="_blank">
+					<img src="${marker.photo}" class="image-popup">
+				</a>
+				<div class="popup-text">
+					<a href="${marker.url}" target="_blank" class="popup-text_content">
+							<h2>${marker.name}</h2>
+							<p class="wineryUrl"> Website: ${marker.URL}</p>
+							<p class="wineryPhone"> Phone: ${marker.Phone}</p>
+					</a>
+				</div>
+			</div>`
+		)
+		.addTo(wineApp.mymap);
+	});	
+}
+
+wineApp.updateWineryList = function() {
+    $.when(wineApp.getPEC())
+    .then(function(resp) {
+        wineApp.wineryList = resp;
+    });
+    wineApp.placeMapMarkers();
+}
+
+
+
+wineApp.placeMapMarkers = function() {
+  function buildPopup(marker) {
+    return `<div class="winery-popup">
+          <a href="${marker.url}" class="image-popup-link" target="_blank">
+            <img src="${marker.photo}" class="image-popup">
+          </a>
+          <div class="popup-text">
+            <a href="${marker.url}" target="_blank" class="popup-text_content">
+              <h2>${marker.name}</h2>
+              <p class="wineryUrl"> Website: ${marker.URL}</p>
+              <p class="wineryPhone"> Phone: ${marker.Phone}</p>
+            </a>
+          </div>
+        </div>`
+  }
+
+  wineApp.wineryList.forEach(function(marker) {
+    var Lat = parseFloat(marker.Lat);
+    var Lng = parseFloat(marker.Lat);
+    var wineMarker = L.marker([Lat, Lng], {
+      icon: wineApp.locationIcon
+    }).bindPopup(buildMarker(marker)).addTo(wineApp.mymap)
+  });
+}
+
+
+>>>>>>> 6017aad21590d1df13d3ccc2e72928cce34e7db0
 //Document Ready!!
 $(function(){
 	wineApp.init();
