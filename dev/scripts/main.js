@@ -53,7 +53,7 @@ wineApp.typeItOut = function(string) {
 wineApp.getPECList = function() {
 	$.when(wineApp.getPEC())
 	.then(function(resp) {
-		resp = resp.map(n => n["Winery Name"]);
+		resp = resp.map(n => n["Winery"]);
 		wineApp.wineryList.push(...resp);
 		wineApp.getAllWines(1); // beginning of chained ajax calls
 	});
@@ -208,19 +208,35 @@ wineApp.addFilterListener = function() {
 }
 
 
+// //This is for when the wine is "selected"
+// wineApp.addWineSelectionListener = function() {
+// 	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
+// 		// console.log("SELECTEDYOOOO");
+// 		$(this).toggleClass("wine-item--selected");
+// 		$(this).find("i").toggleClass("hidden");
+// 		if ($(this).hasClass("wine-item--selected")) {
+// 			wineApp.selections.push(this);
+// 		}
+// 		else {
+// 			wineApp.selections.splice(wineApp.selections.indexOf(this), 1);
+// 		}
+// 	});
+// }
+
 //This is for when the wine is "selected"
 wineApp.addWineSelectionListener = function() {
-	$(".wines-inventory").on("click", ".wine-item", function() { // event delegation
-		// console.log("SELECTEDYOOOO");
-		$(this).toggleClass("wine-item--selected");
-		$(this).find("i").toggleClass("hidden");
-		if ($(this).hasClass("wine-item--selected")) {
-			wineApp.selections.push(this);
-		}
-		else {
-			wineApp.selections.splice(wineApp.selections.indexOf(this), 1);
-		}
-	});
+  $(".wines-inventory").on("click", ".wine-item", function() { // event delegation
+    // console.log("SELECTEDYOOOO");
+    $(this).toggleClass("wine-item--selected");
+    $(this).find("i").toggleClass("hidden");
+    if ($(this).hasClass("wine-item--selected")) {
+      wineApp.selections.push(this);
+      wineApp.placeMapMarkers();
+    } else {
+      wineApp.selections.splice(wineApp.selections.indexOf(this), 1);
+      wineApp.placeMapMarkers();
+    }
+  });
 }
 
 
@@ -312,55 +328,18 @@ wineApp.locationIcon = L.icon({
 });
 
 
-// // Function to place markers for wineries on map
-wineApp.placeMapMarkers = function(){
-	//pulling latitude and longitude for each winery in array
-	wineApp.wineryArray.forEach(function(marker) {
-		var lat = marker.Lat;
-		var lng = marker.Lng;
-		//Leaflet method -> add custom marker to map at lat/longs pulled from above
-		L.marker([Lat, Lng], {icon: wineApp.locationIcon})
-		//Leaflet  method to create "pop up" when marker clicked
-		.bindPopup(
-		//template literal content for marker popups
-			`<div class="winery-popup">
-				<a href="${marker.url}" class="image-popup-link" target="_blank">
-					<img src="${marker.photo}" class="image-popup">
-				</a>
-				<div class="popup-text">
-					<a href="${marker.url}" target="_blank" class="popup-text_content">
-							<h2>${marker.name}</h2>
-							<p class="wineryUrl"> Website: ${marker.URL}</p>
-							<p class="wineryPhone"> Phone: ${marker.Phone}</p>
-					</a>
-				</div>
-			</div>`
-		)
-		.addTo(wineApp.mymap);
-	});	
-}
-
-wineApp.updateWineryList = function() {
-    $.when(wineApp.getPEC())
-    .then(function(resp) {
-        wineApp.wineryList = resp;
-	    wineApp.placeMapMarkers(resp);
-    });
-}
-
-
 
 wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
-          <a href="${marker.url}" class="image-popup-link" target="_blank">
-            <img src="${marker.photo}" class="image-popup">
+          <a href="${marker.URL}" class="image-popup-link" target="_blank">
+            <img src="${marker.Photo}" class="image-popup">
           </a>
           <div class="popup-text">
-            <a href="${marker.url}" target="_blank" class="popup-text_content">
-              <h2>${marker.name}</h2>
+            <a href="${marker.URL}" target="_blank" class="popup-text_content">
+              <h2>${marker.Winery}</h2>
               <p class="wineryUrl"> Website: ${marker.URL}</p>
-              <p class="wineryPhone"> Phone: ${marker.Phone}</p>
+              <p class="wineryPhone"> Phone: ${marker.phone}</p>
             </a>
           </div>
         </div>`
@@ -369,17 +348,14 @@ wineApp.placeMapMarkers = function(resp) {
   resp.forEach(function(marker) {
     var Lat = parseFloat(marker.Lat);
     var Lng = parseFloat(marker.Lng);
-    console.log(Lng)
+    console.log(marker)
     var wineMarker = L.marker([Lat, Lng], {
       icon: wineApp.locationIcon
-    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
-  });
+   }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
+});
 }
-
 
 //Document Ready!!
 $(function(){
 	wineApp.init();
 });
-
-
