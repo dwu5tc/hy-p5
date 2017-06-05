@@ -46,7 +46,6 @@ wineApp.typeItOut = function(string) {
 		wineApp.headerIndex++;
 		// console.log(wineApp.headerIndex);
 	}, 500);
-	}, 350);
 }
 
 
@@ -306,7 +305,7 @@ wineApp.updateWineryList = function() {
 
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
-	iconUrl: 'assets/wineMarker.svg', // Wine glass image for the map marker
+	iconUrl: 'images/wineMarker.svg', // Wine glass image for the map marker
 	iconSize: [70, 70], // dimensions of the icon
 	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
@@ -345,13 +344,13 @@ wineApp.updateWineryList = function() {
     $.when(wineApp.getPEC())
     .then(function(resp) {
         wineApp.wineryList = resp;
+	    wineApp.placeMapMarkers(resp);
     });
-    wineApp.placeMapMarkers();
 }
 
 
 
-wineApp.placeMapMarkers = function() {
+wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
           <a href="${marker.url}" class="image-popup-link" target="_blank">
@@ -367,12 +366,13 @@ wineApp.placeMapMarkers = function() {
         </div>`
   }
 
-  wineApp.wineryList.forEach(function(marker) {
+  resp.forEach(function(marker) {
     var Lat = parseFloat(marker.Lat);
-    var Lng = parseFloat(marker.Lat);
+    var Lng = parseFloat(marker.Lng);
+    console.log(Lng)
     var wineMarker = L.marker([Lat, Lng], {
       icon: wineApp.locationIcon
-    }).bindPopup(buildMarker(marker)).addTo(wineApp.mymap)
+    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
   });
 }
 
