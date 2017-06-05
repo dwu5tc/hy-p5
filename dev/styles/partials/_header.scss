@@ -88,6 +88,22 @@ ul.nav-bar__right__links{
 	}
 }
 
+//MOBILE MENU STYLING
+.mobileMenu{
+	display: none;
+	i{
+		margin-top: 10px;
+		color: white;
+		text-align: center;
+		display: block;
+		font-size: 20px;
+	}
+}
+
+.show{
+	display: block;
+}
+
 //RESPONSIVE STUFF
 
 /* Portrait tablet and small desktops */
@@ -121,4 +137,43 @@ ul.nav-bar__right__links{
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
+	nav{
+		background-color: $darkPlum;
+		padding: 10px 20px;
+		.nav-bar__left{
+			float: none;
+			img{
+				margin: 0 auto;
+				display: block;
+			}
+		}
+		.nav-bar__right{
+			float: none;
+			magin: 0 auto;
+			display: block;
+			margin-top: 8px;
+		}
+		.nav-bar__right__links{
+			display: none;
+			width: 80%;
+			margin: auto;
+			text-align: center;
+		}
+		.nav-bar__right__links li{
+			margin-right: 8px;
+			font-size: 14px;
+		}
+	}
+	.hero{
+		h1{
+			font-size: 45px;
+			letter-spacing: 1px;
+		}
+		h2{
+			font-size: 28px;
+		}
+	}
+	.mobileMenu{
+		display: block;
+	}
 }
