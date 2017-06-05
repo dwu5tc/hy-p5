@@ -1,5 +1,6 @@
 //intial namespace
 var wineApp = {};
+wineApp.wineryArray = []; //<----array to eventually hold restaurant longitude/latitude
 
 //wineApp init
 wineApp.init = function(){
