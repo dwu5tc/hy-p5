@@ -370,7 +370,7 @@ wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
           <a href="${marker.url}" class="image-popup-link" target="_blank">
-            <img src="${marker.photo}" class="image-popup">
+            <img src="${marker.photo}" target="_blank" class="image-popup">
           </a>
           <div class="popup-text">
             <a href="${marker.url}" target="_blank" class="popup-text_content">
@@ -382,29 +382,16 @@ wineApp.placeMapMarkers = function(resp) {
         </div>`
   }
 
-  resp.forEach(function(marker) {
+resp.forEach(function(marker) {
     var Lat = parseFloat(marker.Lat);
     var Lng = parseFloat(marker.Lng);
     console.log(Lng)
     var wineMarker = L.marker([Lat, Lng], {
       icon: wineApp.locationIcon
-<<<<<<< HEAD
    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
-=======
-    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
->>>>>>> c7bcb1e94d25709dff2bcd00317667ab53c91143
-  });
-
+});
 }
 
-
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> c7bcb1e94d25709dff2bcd00317667ab53c91143
 //Document Ready!!
 $(function(){
 	wineApp.init();
