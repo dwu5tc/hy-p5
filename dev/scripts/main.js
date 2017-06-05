@@ -320,7 +320,7 @@ wineApp.updateWineryList = function() {
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
 	iconUrl: 'images/wineMarker.svg', // Wine glass image for the map marker
-	iconSize: [70, 70], // dimensions of the icon
+	iconSize: [40, 40], // dimensions of the icon
 	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
@@ -332,13 +332,12 @@ wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
           <a href="${marker.URL}" class="image-popup-link" target="_blank">
-            <img src="${marker.Photo}" class="image-popup">
+           
           </a>
           <div class="popup-text">
             <a href="${marker.URL}" target="_blank" class="popup-text_content">
               <h2>${marker.Winery}</h2>
               <p class="wineryUrl"> Website: ${marker.URL}</p>
-              <p class="wineryPhone"> Phone: ${marker.phone}</p>
             </a>
           </div>
         </div>`
@@ -357,6 +356,8 @@ wineApp.placeMapMarkers = function(resp) {
 //Document Ready!!
 $(function(){
 	wineApp.init();
+});
+
 	$(function(){
 		// MOBILE NAV THING
 		$('.mobileMenu').on('click touchstart', function(){
