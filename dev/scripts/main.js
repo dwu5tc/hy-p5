@@ -15,7 +15,7 @@ wineApp.init = function(){
 	
 	// wineApp.myMap();
 	// wineApp.updateWineryList();
-	wineApp.placeMapMarkers();
+	// wineApp.placeMapMarkers();
 }
 
 //Variables for the KEY!!!
@@ -300,6 +300,7 @@ wineApp.updateWineryList = function() {
     .then(function(resp) {
         wineApp.wineryList = resp;
         // console.log(wineApp.wineryList);
+	    wineApp.placeMapMarkers(resp);
     });
 }
 
@@ -311,7 +312,7 @@ wineApp.locationIcon = L.icon({
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
 
-wineApp.placeMapMarkers = function() {
+wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
           <a href="${marker.url}" class="image-popup-link" target="_blank">
@@ -327,12 +328,13 @@ wineApp.placeMapMarkers = function() {
         </div>`
   }
 
-  wineApp.wineryList.forEach(function(marker) {
-    var Lat = parseFloat(marker.Lat);
-    var Lng = parseFloat(marker.Lat);
+  resp.forEach(function(marker) {
+    var Lat = parseInt(marker.Lat);
+    var Lng = parseInt(marker.Lng);
+    console.log(Lat)
     var wineMarker = L.marker([Lat, Lng], {
       icon: wineApp.locationIcon
-    }).bindPopup(buildMarker(marker)).addTo(wineApp.mymap)
+    }).bindPopup(buildPopup(marker)).addTo(wineApp.mymap)
   });
 }
 
