@@ -41,7 +41,7 @@ wineApp.typeItOut = function(string) {
 		}
 		$(".hero h1").html(string.substring(0,Math.abs(wineApp.headerIndex)));
 		wineApp.headerIndex++;
-		console.log(wineApp.headerIndex);
+		// console.log(wineApp.headerIndex);
 	}, 500);
 }
 
@@ -286,34 +286,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 }).addTo(wineApp.mymap);
 
 
-
-// -------------- To get winery markers on page ------------------
-
-// Pass in latitute and longitute of each winery 
-wineApp.updateWineryList = function(lat, lng) {
-	$.when(wineApp.getPEC())
-	.then(function(resp) {
-		// console.log(resp);
-	}).then(function(wineryData) {
-		console.log(wineryData);
-		//store winery object into global variable
-		resp = wineryData;
-		//"for each" function to obtain data for every individual winery object
-		wineryList.forEach(function(wineryList){
-			//store individual values for each winery for lat/lon position + additional map display info 
-			wineApp.updateWineryLocation.push({
-				lat: resp["Lat"], 
-				lng: resp["Lng"],
-				name: resp["Winery Name"],
-				url: resp["URL"],
-				phone: resp["Phone"]
-			});
-		});
-		//call function to place markers (wine glasses) on map at winery coordinates
-		wineApp.placeMapMarkers();
-	});
-}
-
 //Wine glass marker for winery locations
 wineApp.locationIcon = L.icon({
 	iconUrl: 'assets/wineMarker.svg', // Wine glass image for the map marker
@@ -352,48 +324,13 @@ wineApp.placeMapMarkers = function(){
 }
 
 wineApp.updateWineryList = function() {
-	$.when(wineApp.getPEC())
-	.then(function(resp) {
-		// console.log(resp);
-		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-			var temp = {
-				name: n,
-				lat: resp["Lat"],
-				lng: resp["Lng"],
-				number: resp["Phone"],
-				url: resp["Website"]
-			}
-			return temp;
-		});		
-		for (var i = 0; i < wineApp.wineListIndex; i++) {
-			wineApp.appendItem(wineApp.wineList[i]);
-		}
-		return;
-	});
+    $.when(wineApp.getPEC())
+    .then(function(resp) {
+        wineApp.wineryList = resp;
+    });
+    wineApp.placeMapMarkers();
 }
 
-// wineApp.updateWineryList = function() {
-// 	$.when(wineApp.getPEC())
-// 	.then(function(resp) {
-// 		console.log(resp);
-// 		console.log('listbefore', wineApp.wineryList);
-// 		wineApp.wineryList = wineApp.wineryList.map(function(n) {
-// 			var temp = {
-// 				name: n,
-// 				lat: resp["Lat"],
-// 				lng: resp["Lon"],
-// 				number: resp["Phone"],
-// 				url: resp["Website"]
-// 			}
-// 			return temp;
-// 		});		
-// 		console.log('listafter', wineApp.wineryList);
-// 		for (var i = 0; i < wineApp.wineListIndex; i++) {
-// 			wineApp.displayWine(wineApp.wineList[i]);
-// 		}
-// 		return;
-// 	});
-// }
 
 //Document Ready!!
 $(function(){
