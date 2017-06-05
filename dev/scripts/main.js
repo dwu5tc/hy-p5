@@ -308,8 +308,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 
 // -------------- To get winery markers on page ------------------
 
-// Pass in latitute and longitute of each winery 
-
 wineApp.updateWineryList = function() {
     $.when(wineApp.getPEC())
     .then(function(resp) {
@@ -328,7 +326,8 @@ wineApp.locationIcon = L.icon({
 });
 
 
-
+//THIS IS TO GET THE MARKERS TO DISPLAY ON THE PAGE WITH SOME WINERY INFO
+//USING THE LONG AND LAT FROM THE SHEETSU API
 wineApp.placeMapMarkers = function(resp) {
   function buildPopup(marker) {
     return `<div class="winery-popup">
@@ -358,4 +357,18 @@ wineApp.placeMapMarkers = function(resp) {
 //Document Ready!!
 $(function(){
 	wineApp.init();
+	$(function(){
+		// MOBILE NAV THING
+		$('.mobileMenu').on('click touchstart', function(){
+			$('.nav-bar__right__links').slideToggle("slow")
+			});
+		});
+		// SO THAT STUFF COMES BACK
+		$(window).resize(function(){
+			if($(window).width() > 480){
+				$('.nav-bar__right__links').css('display', 'inline-block')
+			} else{
+				$('.nav-bar__right__links').css('display', 'none')
+			}
+		});
 });
